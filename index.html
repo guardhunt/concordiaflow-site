@@ -233,6 +233,7 @@
 			#main article {
 				background: #2a2f32;
 				border-radius: 8px;
+                padding-bottom: 2rem;
 				max-width: 45rem;
 				max-height: 80vh;
 				overflow-y: auto;
@@ -249,9 +250,13 @@
 			}
 			
 			#main article .close {
-				position: absolute;
+				position: sticky;
 				top: 1rem;
-				right: 1rem;
+				right: 0;
+                margin-left: auto;
+                margin-right: .8rem;
+                margin-top: .8rem;
+                text-align: right;
 				width: 2rem;
 				height: 2rem;
 				border-radius: 50%;
@@ -422,10 +427,6 @@
 					</div>
 				</div>
 				<nav id="nav">
-					<a href="#about">
-						<span class="icon"></span>
-						<span>About</span>
-					</a>
 					<a href="#mentoring">
 						<span class="icon"></span>
 						<span>Mentoring</span>
@@ -433,6 +434,10 @@
 					<a href="#rootingwalks">
 						<span class="icon"></span>
 						<span>Rooting Walks</span>
+					</a>
+                    <a href="#about">
+						<span class="icon"></span>
+						<span>About</span>
 					</a>
 					<a href="#contact">
 						<span class="icon"></span>
@@ -443,25 +448,6 @@
 
 			<!-- Main -->
 			<div id="main">
-				<!-- About -->
-				<article id="about-content">
-					<div class="close"><i class="fas fa-times"></i></div>
-					<div class="content">
-						<h2>About</h2>
-						<p>My life imploded from deeply unresolved trauma, emotional enmeshment in my marriage, career and religious burnout, and divorce. I left the US for several years seeking clarity and answers on why it was so hard to be in relationship with people, why work was so incredibly stressful, and most importantly why I couldn't live just with myself without constant distractions, social anxiety, a sense of failure, and nearly constant fear built around feeling a stranger in my own skin.</p>
-						
-						<p>I traveled the world: Greece, the Caribbean, Colombia, Indonesia, Thailand, Vietnam, India and other countries on this journey. I found a form of transformation that came not through intensive therapies, courses, workshops, books or any other system.</p>
-						
-						<p>What I've learned is that healing comes through presence, bathing the tensions and unloved parts of ourselves, the parts we call negative or problematic that we tend to silence or escape from with entertainment, consumerism, work, or establishing more controlled and hyper specific identities that must be reinforced by symbols and lifestyles and more things.</p>
-						
-						<p>I learned that stillness, silence, and experiential, embodied rooting, is a process of bringing our awareness into this present now, into reality itself, so that we can metabolize our holding patterns, our traumas, our psychological conditionings, and find true liberation of our deep, cultural, multi-generational wounding.</p>
-						
-						<p>It's simple. And it starts with safety and presence. Listening to the call instead of silencing it. Slowly diving into the fears and pain that emerge, bringing them to the surface and into love and safety and support, and then diving back in.</p>
-						
-						<p>I am a facilitator, trained yoga instructor, freediving instructor, writer, and mentor, bringing together embodied practices that support presence, healing, and authentic relationship with ourselves and others.</p>
-					</div>
-				</article>
-
 				<!-- Mentoring -->
 				<article id="mentoring-content">
 					<div class="close"><i class="fas fa-times"></i></div>
@@ -481,7 +467,9 @@
 						<p>This work is not about following a system or method, but about learning to trust your own capacity for healing and presence. We work at your pace, honoring what wants to emerge and what needs to be held with gentleness.</p>
 						
 						<p>Sessions can be conducted in person in Asheville, NC or virtually. I also incorporate movement, breathwork, and nature-based practices when appropriate.</p>
-					</div>
+					
+                        <p><ul><b><a href="#contact" class="internal-link">Send me a message here if your interested!</a></b></ul>
+                    </div>
 				</article>
 
 				<!-- RootingWalks -->
@@ -489,7 +477,7 @@
 					<div class="close"><i class="fas fa-times"></i></div>
 					<div class="content">
 						<h2>Rooting Walks</h2>
-						<p>RootingWalks are a combination of facilitated movement, somatics, and breathwork on walks in nature in small groups with a very low bar of entry.</p>
+						<p>Rooting Walks are a combination of facilitated movement, somatics, and breathwork in small groups on walks in nature.</p>
 						
 						<p>Rooting Walks are about grounding into our bodies, in this vibrant earth, with our breath, through movement and meditation, together. In our fragmented, incoherent and increasingly artificial lives, Presence is more important than ever.</p>
 						
@@ -504,6 +492,25 @@
                         <p><ul><b><a href="#contact" class="internal-link">Send me a message here if your interested!</a></b></ul>
 
                     </div>
+				</article>
+
+                <!-- About -->
+				<article id="about-content">
+					<div class="close"><i class="fas fa-times"></i></div>
+					<div class="content">
+						<h2>About</h2>
+						<p>My life imploded from deeply unresolved trauma, emotional enmeshment in my marriage, career and religious burnout, and divorce. I left the US for several years seeking clarity and answers on why it was so hard to be in relationship with people, why work was so incredibly stressful, and most importantly why I couldn't live just with myself without constant distractions, social anxiety, a sense of failure, and nearly constant fear built around feeling a stranger in my own skin.</p>
+						
+						<p>I traveled the world: Greece, the Caribbean, Colombia, Indonesia, Thailand, Vietnam, India and other countries on this journey. I found a form of transformation that came not through intensive therapies, courses, workshops, books or any other system.</p>
+						
+						<p>What I've learned is that healing comes through presence, bathing the tensions and unloved parts of ourselves, the parts we call negative or problematic that we tend to silence or escape from with entertainment, consumerism, work, or establishing more controlled and hyper specific identities that must be reinforced by symbols and lifestyles and more things.</p>
+						
+						<p>I learned that stillness, silence, and experiential, embodied rooting, is a process of bringing our awareness into this present now, into reality itself, so that we can metabolize our holding patterns, our traumas, our psychological conditionings, and find true liberation of our deep, cultural, multi-generational wounding.</p>
+						
+						<p>It's simple. And it starts with safety and presence. Listening to the call instead of silencing it. Slowly diving into the fears and pain that emerge, bringing them to the surface and into love and safety and support, and then diving back in.</p>
+						
+						<p>I am a facilitator, trained yoga instructor, freediving instructor, writer, and mentor, bringing together embodied practices that support presence, healing, and authentic relationship with ourselves and others.</p>
+					</div>
 				</article>
 
 				<!-- Contact -->
