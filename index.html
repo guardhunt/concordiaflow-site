@@ -488,7 +488,7 @@
 				<article id="rootingwalks-content">
 					<div class="close"><i class="fas fa-times"></i></div>
 					<div class="content">
-						<h2>RootingWalks</h2>
+						<h2>Rooting Walks</h2>
 						<p>RootingWalks are a combination of facilitated movement, somatics, and breathwork on walks in nature in small groups with a very low bar of entry.</p>
 						
 						<p>Rooting Walks are about grounding into our bodies, in this vibrant earth, with our breath, through movement and meditation, together. In our fragmented, incoherent and increasingly artificial lives, Presence is more important than ever.</p>
@@ -500,7 +500,10 @@
 						<p>These walks happen in the beautiful natural settings around Asheville, North Carolina. No experience necessary - just bring yourself and comfortable walking shoes. We move slowly, pause frequently, and honor whatever arises in the group container.</p>
 						
 						<p>Each walk includes gentle movement practices, breathing exercises, moments of silence, and opportunities for sharing if you feel called to. The emphasis is on being present together in nature, allowing the earth to support our nervous systems and our return to embodied presence.</p>
-					</div>
+					
+                        <p><ul><b><a href="#contact" class="internal-link">Send me a message here if your interested!</a></b></ul>
+
+                    </div>
 				</article>
 
 				<!-- Contact -->
@@ -510,25 +513,29 @@
 						<h2>Get in Touch</h2>
 						<p>I'd love to hear from you. Whether you're curious about mentoring, interested in joining a RootingWalk, or simply want to connect, feel free to reach out.</p>
 						
-						<form method="post" action="#">
-							<div class="fields">
-								<div class="field half">
-									<label for="name">Name</label>
-									<input type="text" name="name" id="name" />
-								</div>
-								<div class="field half">
-									<label for="email">Email</label>
-									<input type="email" name="email" id="email" />
-								</div>
-								<div class="field">
-									<label for="message">Message</label>
-									<textarea name="message" id="message" rows="4" placeholder="Tell me a bit about what you're looking for or what's calling you to reach out..."></textarea>
-								</div>
-							</div>
-							<ul class="actions">
-								<li><input type="submit" value="Send Message" /></li>
-							</ul>
-						</form>
+                        <form id="contact-form">
+                            <div class="field">
+                              <label for="name">Name</label>
+                              <input type="text" name="name" id="name" required>
+                            </div>
+                          
+                            <div class="field">
+                              <label for="email">Email</label>
+                              <input type="email" name="email" id="email" required>
+                            </div>
+                          
+                            <div class="field">
+                              <label for="message">Message</label>
+                              <textarea name="message" id="message" rows="4" required></textarea>
+                            </div>
+                          
+                            <!-- reCAPTCHA response -->
+                            <input type="hidden" name="g-recaptcha-response" id="recaptcha-response">
+                          
+                            <div class="actions">
+                              <input type="submit" value="Send Message">
+                            </div>
+                          </form>
 						
 						<div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
 							<p><strong>Email:</strong> <a href="mailto:chrisguardhunt@gmail.com">chrisguardhunt@gmail.com</a></p>
@@ -545,66 +552,125 @@
 			</div>
 		</div>
 
-		<script>
-			// Navigation functionality
-			const navLinks = document.querySelectorAll('#nav a');
-			const main = document.getElementById('main');
-			const articles = document.querySelectorAll('#main article');
-			const closeButtons = document.querySelectorAll('.close');
+        <script src="https://www.google.com/recaptcha/api.js?render=6Lf_nFArAAAAAAckh8n-KBDpXEaf4dL21gQN1MqA"></script>
 
-			navLinks.forEach(link => {
-				link.addEventListener('click', (e) => {
-					e.preventDefault();
-					const target = link.getAttribute('href').substring(1);
-					const targetArticle = document.getElementById(target + '-content');
-					
-					// Hide all articles
-					articles.forEach(article => {
-						article.style.display = 'none';
-					});
-					
-					// Show target article
-					if (targetArticle) {
-						targetArticle.style.display = 'block';
-						main.classList.add('active');
-					}
-				});
-			});
+        <script>
+            // Navigation functionality
+            const navLinks = document.querySelectorAll('#nav a');
+            const main = document.getElementById('main');
+            const articles = document.querySelectorAll('#main article');
+            const closeButtons = document.querySelectorAll('.close');
+        
+            function showArticle(id) {
+                const targetArticle = document.getElementById(id + '-content');
+        
+                // Hide all articles
+                articles.forEach(article => {
+                    article.style.display = 'none';
+                });
+        
+                // Show target article
+                if (targetArticle) {
+                    targetArticle.style.display = 'block';
+                    main.classList.add('active');
+                }
+            }
+        
+            // Handle clicks on nav links
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const target = link.getAttribute('href').substring(1);
+                    window.location.hash = target; // Update URL hash
+                    showArticle(target);
+                });
+            });
+        
+            // Close functionality
+            closeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    main.classList.remove('active');
+                    window.location.hash = ''; // Clear hash
+                    setTimeout(() => {
+                        articles.forEach(article => {
+                            article.style.display = 'none';
+                        });
+                    }, 325);
+                });
+            });
+        
+            // Close on background click
+            main.addEventListener('click', (e) => {
+                if (e.target === main) {
+                    main.classList.remove('active');
+                    window.location.hash = '';
+                    setTimeout(() => {
+                        articles.forEach(article => {
+                            article.style.display = 'none';
+                        });
+                    }, 325);
+                }
+            });
+        
+            // ESC key to close
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && main.classList.contains('active')) {
+                    main.classList.remove('active');
+                    window.location.hash = '';
+                    setTimeout(() => {
+                        articles.forEach(article => {
+                            article.style.display = 'none';
+                        });
+                    }, 325);
+                }
+            });
 
-			closeButtons.forEach(button => {
-				button.addEventListener('click', () => {
-					main.classList.remove('active');
-					setTimeout(() => {
-						articles.forEach(article => {
-							article.style.display = 'none';
-						});
-					}, 325);
-				});
-			});
+            // Handle internal links between articles
+            document.querySelectorAll('.internal-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const target = link.getAttribute('href').substring(1);
+                    window.location.hash = target;
+                    showArticle(target);
+                });
+            });
+        
+            // Show article if URL has a hash on page load
+            window.addEventListener('DOMContentLoaded', () => {
+                const hash = window.location.hash.substring(1);
+                if (hash) showArticle(hash);
+            });
 
-			// Close on background click
-			main.addEventListener('click', (e) => {
-				if (e.target === main) {
-					main.classList.remove('active');
-					setTimeout(() => {
-						articles.forEach(article => {
-							article.style.display = 'none';
-						});
-					}, 325);
-				}
-			});
+            const form = document.getElementById('contact-form');
 
-			// ESC key to close
-			document.addEventListener('keydown', (e) => {
-				if (e.key === 'Escape' && main.classList.contains('active')) {
-					main.classList.remove('active');
-					setTimeout(() => {
-						articles.forEach(article => {
-							article.style.display = 'none';
-						});
-					}, 325);
-				}
-			});
-		</script>
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                grecaptcha.ready(function () {
+                grecaptcha.execute('6Lf_nFArAAAAAAckh8n-KBDpXEaf4dL21gQN1MqA', { action: 'submit' }).then(function (token) {
+                    document.getElementById('recaptcha-response').value = token;
+
+                    const formData = new FormData(form);
+
+                    fetch("https://formspree.io/f/xkgbwbaj", {
+                    method: "POST",
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                    }).then(response => {
+                    if (response.ok) {
+                        alert("Thank you! Your message has been sent.");
+                        form.reset();
+                    } else {
+                        alert("Oops! There was a problem. Please try again.");
+                    }
+                    }).catch(error => {
+                    alert("An error occurred. Please try again later.");
+                    });
+                });
+                });
+            });
+        </script>
 	</body>
 </html>
