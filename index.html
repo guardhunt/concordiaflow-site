@@ -1,0 +1,610 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>ConcordiaFlow - Presence through Relationship</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+		<style>
+			@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600');
+			
+			/* Reset */
+			* { margin: 0; padding: 0; box-sizing: border-box; }
+			
+			/* Basic */
+			body {
+				background-color: #1b1f22;
+				color: rgba(255, 255, 255, 0.9);
+				font-family: "Source Sans Pro", Arial, Helvetica, sans-serif;
+				font-size: 17pt;
+				font-weight: 300;
+				line-height: 1.65;
+			}
+			
+			h1, h2, h3, h4 {
+				color: #ffffff;
+				font-weight: 600;
+				line-height: 1.5;
+				margin: 0 0 1rem 0;
+			}
+			
+			h1 { font-size: 2.5rem; }
+			h2 { font-size: 1.75rem; }
+			h3 { font-size: 1.35rem; }
+			
+			p { margin: 0 0 2rem 0; }
+			
+			a {
+				color: inherit;
+				text-decoration: none;
+				border-bottom: dotted 1px rgba(255, 255, 255, 0.5);
+				transition: color 0.25s ease, border-bottom-color 0.25s ease;
+			}
+			
+			a:hover {
+				border-bottom-color: transparent;
+				color: #ffffff;
+			}
+			
+			/* Wrapper */
+			#wrapper {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				min-height: 100vh;
+				position: relative;
+				background: #1b1f22;
+				overflow: hidden;
+			}
+			
+            #wrapper::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-image: url('media/pexels-davidjboozer-518895.jpg'); /* replace with your actual image path */
+                background-size: cover; /* or 'contain' / specific size if needed */
+                background-repeat: no-repeat;
+                background-position: center;
+                animation: none; /* remove if image doesn't animate */
+            }
+			
+			@keyframes sparkle {
+				0% { transform: translateY(0px); }
+				100% { transform: translateY(-100px); }
+			}
+			
+			/* Header */
+			#header {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				transition: transform 0.325s ease-in-out, filter 0.325s ease-in-out;
+				max-width: 100%;
+				text-align: center;
+				margin-bottom: 3rem;
+				position: relative;
+				z-index: 1;
+			}
+			
+			#header .content {
+                border:#1b1f22;
+				border-top-width: 1px;
+				border-bottom-width: 1px;
+                border-radius: .5rem;
+				max-width: 100%;
+				padding: 4rem 3rem;
+                margin-bottom: 3rem;
+				text-align: center;
+				transition: max-width 0.325s ease, padding 0.325s ease;
+            }
+			
+			#header .content .inner {
+				max-width: 100%;
+				margin: 0 auto;
+			}
+			
+			#header .content h1 {
+				font-size: 6.75rem;
+				margin: 0 0 0.5rem 0;
+				font-weight: 300;
+				letter-spacing: 0.2rem;
+                color: rgba(255, 255, 255, 0.9);
+			}
+			
+			#header .content p {
+				font-size: 1.5rem;
+				margin: 0;
+				opacity: 0.75;
+				font-style:bold;
+			}
+
+            #header .content img {
+                max-width: 300px;
+                align-items: center;
+            }
+			
+			/* Nav */
+			#nav {
+                font-size: 1.3rem;
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				gap: 2rem;
+				position: relative;
+				z-index: 1;
+			}
+			
+			#nav a {
+				border: 0;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+                margin-bottom: .9rem;
+				min-width: 10rem;
+				height: 9rem;
+				background: rgba(0, 0, 0, 0.5);
+				border-radius: 4px;
+				transition: background-color 0.25s ease, transform 0.25s ease;
+				cursor: pointer;
+			}
+			
+			#nav a:hover {
+				background: rgba(255, 255, 255, 0.1);
+				transform: translateY(-2px);
+			}
+			
+			#nav a .icon {
+                display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+			
+			/* Simple icon replacements using CSS shapes and Unicode */
+            #nav a[href="#about"] .icon::before {
+                content: "";
+                display: inline-block;
+                width: 90px;
+                height: 90px;
+                background-image: url('media/greif2-sm-wt.png'); /* replace with your image path */
+                background-size: contain;
+                background-repeat: no-repeat;
+                margin-right: 6px;
+                vertical-align: middle;
+            }
+
+            #nav a[href="#mentoring"] .icon::before {
+                content: "";
+                display: inline-block;
+                width: 90px;
+                height: 90px;
+                background-image: url('media/community-wt-sm.png');
+                background-size: contain;
+                background-repeat: no-repeat;
+                margin-right: 6px;
+                vertical-align: middle;
+            }
+
+            #nav a[href="#rootingwalks"] .icon::before {
+                content: "";
+                display: inline-block;
+                width: 90px;
+                height: 90px;
+                background-image: url('media/expression-wt-sm.png');
+                background-size: contain;
+                background-repeat: no-repeat;
+                margin-right: 6px;
+                vertical-align: middle;
+            }
+
+            #nav a[href="#contact"] .icon::before {
+                content: "";
+                display: inline-block;
+                width: 90px;
+                height: 90px;
+                background-image: url('media/regulation-wt-sm.png');
+                background-size: contain;
+                background-repeat: no-repeat;
+                margin-right: 6px;
+                vertical-align: middle;
+            }
+			
+			/* Main */
+			#main {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100vw;
+				height: 100vh;
+				background: rgba(27, 31, 34, 0.4);
+				display: none;
+				align-items: center;
+				justify-content: center;
+				z-index: 10000;
+				backdrop-filter: blur(4px);
+			}
+			
+			#main.active { display: flex; }
+			
+			#main article {
+				background: #2a2f32;
+				border-radius: 8px;
+				max-width: 45rem;
+				max-height: 80vh;
+				overflow-y: auto;
+				margin: 2rem;
+				position: relative;
+				transform: translateY(2rem);
+				opacity: 0;
+				transition: transform 0.325s ease, opacity 0.325s ease;
+			}
+			
+			#main.active article {
+				transform: translateY(0);
+				opacity: 1;
+			}
+			
+			#main article .close {
+				position: absolute;
+				top: 1rem;
+				right: 1rem;
+				width: 2rem;
+				height: 2rem;
+				border-radius: 50%;
+				background: rgba(255, 255, 255, 0.1);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				cursor: pointer;
+				transition: background-color 0.25s ease;
+			}
+			
+			#main article .close:hover {
+				background: rgba(255, 255, 255, 0.2);
+			}
+			
+			#main article .content {
+				padding: 3rem;
+			}
+			
+			#main article h2 {
+				margin-bottom: 2rem;
+			}
+			
+			/* Form */
+			form {
+				display: flex;
+				flex-direction: column;
+				gap: 1rem;
+			}
+			
+			form .fields {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 1rem;
+			}
+			
+			form .field {
+				flex: 1;
+				min-width: 15rem;
+			}
+			
+			form .field.half {
+				width: calc(50% - 0.5rem);
+			}
+			
+			form label {
+				display: block;
+				margin-bottom: 0.5rem;
+				font-weight: 600;
+				color: #ffffff;
+			}
+			
+			form input[type="text"],
+			form input[type="email"],
+			form select,
+			form textarea {
+				background: rgba(255, 255, 255, 0.05);
+				border: 1px solid rgba(255, 255, 255, 0.15);
+				border-radius: 4px;
+				color: #ffffff;
+				display: block;
+				outline: 0;
+				padding: 0.75rem 1rem;
+				text-decoration: none;
+				width: 100%;
+				font-family: inherit;
+				font-size: 0.9rem;
+			}
+			
+			form textarea {
+				min-height: 10rem;
+				resize: vertical;
+			}
+			
+			form input[type="submit"] {
+				background: linear-gradient(45deg, #76b852, #8DC26F);
+				border: 0;
+				border-radius: 4px;
+				color: #ffffff;
+				cursor: pointer;
+				display: inline-block;
+				font-family: inherit;
+				font-size: 0.9rem;
+				font-weight: 600;
+				height: 2.75rem;
+				letter-spacing: 0.1rem;
+				line-height: 2.75rem;
+				padding: 0 2rem;
+				text-align: center;
+				text-decoration: none;
+				text-transform: uppercase;
+				transition: background-color 0.25s ease;
+				white-space: nowrap;
+			}
+			
+			form input[type="submit"]:hover {
+				background: linear-gradient(45deg, #8DC26F, #76b852);
+			}
+			
+			/* Social Links */
+			.social-links {
+				display: flex;
+				gap: 1rem;
+				justify-content: center;
+				margin-top: 2rem;
+			}
+			
+			.social-links a {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 3rem;
+				height: 3rem;
+				border-radius: 50%;
+				background: rgba(255, 255, 255, 0.05);
+				transition: background-color 0.25s ease, transform 0.25s ease;
+				border: none;
+			}
+			
+			.social-links a:hover {
+				background: rgba(255, 255, 255, 0.1);
+				transform: translateY(-2px);
+			}
+			
+			/* Responsive */
+			@media screen and (max-width: 736px) {
+				#header .content {
+					padding: 3rem 2rem;
+				}
+				
+				#header .content h1 {
+					font-size: 2rem;
+				}
+				
+				#nav {
+					gap: 1rem;
+				}
+				
+				#nav a {
+					min-width: 8rem;
+					height: 8rem;
+				}
+				
+				#main article {
+					margin: 1rem;
+					max-height: 90vh;
+				}
+				
+				#main article .content {
+					padding: 2rem;
+				}
+				
+				form .field.half {
+					width: 100%;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Wrapper -->
+		<div id="wrapper">
+			<!-- Header -->
+			<header id="header">
+				<div class="content">
+					<div class="inner">
+                        <img src="media/ConcordiaFlow_new_wht.png" alt="ConcordiaFlow Logo" class="logo" />
+						<p>Presence Through Relationship</p>
+					</div>
+				</div>
+				<nav id="nav">
+					<a href="#about">
+						<span class="icon"></span>
+						<span>About</span>
+					</a>
+					<a href="#mentoring">
+						<span class="icon"></span>
+						<span>Mentoring</span>
+					</a>
+					<a href="#rootingwalks">
+						<span class="icon"></span>
+						<span>Rooting Walks</span>
+					</a>
+					<a href="#contact">
+						<span class="icon"></span>
+						<span>Contact</span>
+					</a>
+				</nav>
+			</header>
+
+			<!-- Main -->
+			<div id="main">
+				<!-- About -->
+				<article id="about-content">
+					<div class="close"><i class="fas fa-times"></i></div>
+					<div class="content">
+						<h2>About</h2>
+						<p>My life imploded from deeply unresolved trauma, emotional enmeshment in my marriage, career and religious burnout, and divorce. I left the US for several years seeking clarity and answers on why it was so hard to be in relationship with people, why work was so incredibly stressful, and most importantly why I couldn't live just with myself without constant distractions, social anxiety, a sense of failure, and nearly constant fear built around feeling a stranger in my own skin.</p>
+						
+						<p>I traveled the world: Greece, the Caribbean, Colombia, Indonesia, Thailand, Vietnam, India and other countries on this journey. I found a form of transformation that came not through intensive therapies, courses, workshops, books or any other system.</p>
+						
+						<p>What I've learned is that healing comes through presence, bathing the tensions and unloved parts of ourselves, the parts we call negative or problematic that we tend to silence or escape from with entertainment, consumerism, work, or establishing more controlled and hyper specific identities that must be reinforced by symbols and lifestyles and more things.</p>
+						
+						<p>I learned that stillness, silence, and experiential, embodied rooting, is a process of bringing our awareness into this present now, into reality itself, so that we can metabolize our holding patterns, our traumas, our psychological conditionings, and find true liberation of our deep, cultural, multi-generational wounding.</p>
+						
+						<p>It's simple. And it starts with safety and presence. Listening to the call instead of silencing it. Slowly diving into the fears and pain that emerge, bringing them to the surface and into love and safety and support, and then diving back in.</p>
+						
+						<p>I am a facilitator, trained yoga instructor, freediving instructor, writer, and mentor, bringing together embodied practices that support presence, healing, and authentic relationship with ourselves and others.</p>
+					</div>
+				</article>
+
+				<!-- Mentoring -->
+				<article id="mentoring-content">
+					<div class="close"><i class="fas fa-times"></i></div>
+					<div class="content">
+						<h2>Mentoring</h2>
+						<p>I work with people who are experiencing a lot of fear that leads to self-sabotage. If you find yourself caught in patterns of avoiding, escaping, or undermining your own growth and wellbeing, you're not alone.</p>
+						
+						<p>My mentoring approach focuses on developing safety and presence as the foundation for transformation. Rather than trying to fix or change ourselves, we learn to be with what is actually happening in our bodies, emotions, and lived experience.</p>
+						
+						<p>Together, we explore:</p>
+						<p>• How to create safety within yourself so you can feel your fears without being overwhelmed by them<br>
+						• Practices for staying present with difficult emotions and sensations<br>
+						• Ways to recognize and interrupt self-sabotaging patterns<br>
+						• Embodied techniques for metabolizing trauma and conditioning<br>
+						• How to develop authentic relationship with yourself and others</p>
+						
+						<p>This work is not about following a system or method, but about learning to trust your own capacity for healing and presence. We work at your pace, honoring what wants to emerge and what needs to be held with gentleness.</p>
+						
+						<p>Sessions can be conducted in person in Asheville, NC or virtually. I also incorporate movement, breathwork, and nature-based practices when appropriate.</p>
+					</div>
+				</article>
+
+				<!-- RootingWalks -->
+				<article id="rootingwalks-content">
+					<div class="close"><i class="fas fa-times"></i></div>
+					<div class="content">
+						<h2>RootingWalks</h2>
+						<p>RootingWalks are a combination of facilitated movement, somatics, and breathwork on walks in nature in small groups with a very low bar of entry.</p>
+						
+						<p>Rooting Walks are about grounding into our bodies, in this vibrant earth, with our breath, through movement and meditation, together. In our fragmented, incoherent and increasingly artificial lives, Presence is more important than ever.</p>
+						
+						<p>Come bathe yourself in the richness of this abundant, present, now, as an invitation to your whole being, to stay right here. Presence is being alive inside what is actually happening, what is real here and now, this living conversation, of chemistry, emotion, sensation, energy, we find ourselves growing inside.</p>
+						
+						<p>Presence is experiencing your own participation within your own relational life, your own seasonal and dynamic self, and the whole ecology of your embodied existence.</p>
+						
+						<p>These walks happen in the beautiful natural settings around Asheville, North Carolina. No experience necessary - just bring yourself and comfortable walking shoes. We move slowly, pause frequently, and honor whatever arises in the group container.</p>
+						
+						<p>Each walk includes gentle movement practices, breathing exercises, moments of silence, and opportunities for sharing if you feel called to. The emphasis is on being present together in nature, allowing the earth to support our nervous systems and our return to embodied presence.</p>
+					</div>
+				</article>
+
+				<!-- Contact -->
+				<article id="contact-content">
+					<div class="close"><i class="fas fa-times"></i></div>
+					<div class="content">
+						<h2>Get in Touch</h2>
+						<p>I'd love to hear from you. Whether you're curious about mentoring, interested in joining a RootingWalk, or simply want to connect, feel free to reach out.</p>
+						
+						<form method="post" action="#">
+							<div class="fields">
+								<div class="field half">
+									<label for="name">Name</label>
+									<input type="text" name="name" id="name" />
+								</div>
+								<div class="field half">
+									<label for="email">Email</label>
+									<input type="email" name="email" id="email" />
+								</div>
+								<div class="field">
+									<label for="message">Message</label>
+									<textarea name="message" id="message" rows="4" placeholder="Tell me a bit about what you're looking for or what's calling you to reach out..."></textarea>
+								</div>
+							</div>
+							<ul class="actions">
+								<li><input type="submit" value="Send Message" /></li>
+							</ul>
+						</form>
+						
+						<div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+							<p><strong>Email:</strong> <a href="mailto:chrisguardhunt@gmail.com">chrisguardhunt@gmail.com</a></p>
+							<p><strong>Location:</strong> Asheville, North Carolina</p>
+							
+							<div class="social-links">
+								<a href="https://instagram.com/concordiaflow" target="_blank" title="Instagram">
+									<i class="fab fa-instagram"></i>
+								</a>
+							</div>
+						</div>
+					</div>
+				</article>
+			</div>
+		</div>
+
+		<script>
+			// Navigation functionality
+			const navLinks = document.querySelectorAll('#nav a');
+			const main = document.getElementById('main');
+			const articles = document.querySelectorAll('#main article');
+			const closeButtons = document.querySelectorAll('.close');
+
+			navLinks.forEach(link => {
+				link.addEventListener('click', (e) => {
+					e.preventDefault();
+					const target = link.getAttribute('href').substring(1);
+					const targetArticle = document.getElementById(target + '-content');
+					
+					// Hide all articles
+					articles.forEach(article => {
+						article.style.display = 'none';
+					});
+					
+					// Show target article
+					if (targetArticle) {
+						targetArticle.style.display = 'block';
+						main.classList.add('active');
+					}
+				});
+			});
+
+			closeButtons.forEach(button => {
+				button.addEventListener('click', () => {
+					main.classList.remove('active');
+					setTimeout(() => {
+						articles.forEach(article => {
+							article.style.display = 'none';
+						});
+					}, 325);
+				});
+			});
+
+			// Close on background click
+			main.addEventListener('click', (e) => {
+				if (e.target === main) {
+					main.classList.remove('active');
+					setTimeout(() => {
+						articles.forEach(article => {
+							article.style.display = 'none';
+						});
+					}, 325);
+				}
+			});
+
+			// ESC key to close
+			document.addEventListener('keydown', (e) => {
+				if (e.key === 'Escape' && main.classList.contains('active')) {
+					main.classList.remove('active');
+					setTimeout(() => {
+						articles.forEach(article => {
+							article.style.display = 'none';
+						});
+					}, 325);
+				}
+			});
+		</script>
+	</body>
+</html>
