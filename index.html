@@ -277,7 +277,12 @@
 			}
 			
 			#main article h2 {
-				margin-bottom: 2rem;
+				margin-bottom: .5rem;
+				margin-top: 1.5rem;
+			}
+
+			#main .content ul {
+				padding-left: 2rem;
 			}
 			
 			/* Form */
@@ -380,7 +385,160 @@
 				background: rgba(255, 255, 255, 0.1);
 				transform: translateY(-2px);
 			}
+
+			.announcement-box {
+				max-width: 500px;
+				margin: 20px auto;
+				background: linear-gradient(145deg, #f8faf8, #ffffff);
+				border: 1px solid #e1e8e1;
+				border-radius: 12px;
+				padding: 24px 32px;
+				box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+				font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+				position: relative;
+				overflow: hidden;
+			}
 			
+			.announcement-box::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				height: 4px;
+				background: linear-gradient(90deg, #6b8e5a, #8fbc6f, #6b8e5a);
+			}
+			
+			.event-title {
+				font-size: 20px;
+				font-weight: 600;
+				color: #2d4a2d;
+				margin-bottom: 20px;
+				line-height: 1.3;
+				text-align: left;
+			}
+			
+			.detail-item {
+				margin-bottom: 12px;
+				align-items: left;
+				display: flex;
+				gap: 12px;
+			}
+			
+			.detail-label {
+				font-weight: 600;
+				color: #4a5d4a;
+				min-width: 60px;
+				font-size: 15px;
+			}
+			
+			.detail-content {
+				color: #5a6b5a;
+				font-size: 15px;
+				line-height: 1.5;
+				flex: 1;
+				text-align: left;
+			}
+			
+			.read-more-container {
+				margin-top: 8px;
+				margin-left: 72px;
+				text-align: left;
+				font-size: 15px;
+				font-weight: bold;
+				color: brown;
+			}
+			
+			.read-more-link {
+				color: #6b8e5a;
+				text-decoration: none;
+				font-size: 14px;
+				font-weight: 500;
+				transition: color 0.2s ease;
+			}
+			
+			.read-more-link:hover {
+				color: #5a7a4a;
+				text-decoration: underline;
+			}
+			
+			.rsvp-notice {
+				background: #f0f5f0;
+				color: black;
+				font-size: 16px;
+				border: 1px solid #d4e2d4;
+				border-radius: 8px;
+				margin-top: 20px;
+				text-align: center;
+			}
+
+			.rsvp-notice a{
+				display:inline-block;
+				width:100%;
+				height:100%;
+			}
+
+			.rsvp-notice :hover{
+				color: white;
+				background: #e0e8e0;
+			}
+			
+			.rsvp-text {
+				color: #3e5a3e;
+				font-weight: 500;
+				font-size: 14px;
+				margin: 0;
+			}
+			
+			.nature-accent {
+				position: absolute;
+				bottom: -10px;
+				right: -10px;
+				width: 60px;
+				height: 60px;
+				background: radial-gradient(circle, rgba(139, 188, 111, 0.1) 0%, transparent 70%);
+				border-radius: 50%;
+			}
+
+			.stippled-leaves-bg {
+			background-color: #EEE;
+            background-image: 
+                radial-gradient(circle at 15% 25%, rgba(0, 0, 0, 0.08) 1px, transparent 1px),
+                radial-gradient(circle at 85% 15%, rgba(0, 0, 0, 0.06) 1px, transparent 1px),
+                radial-gradient(circle at 45% 45%, rgba(0, 0, 0, 0.07) 1px, transparent 1px),
+                radial-gradient(circle at 75% 75%, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+                radial-gradient(circle at 25% 85%, rgba(0, 0, 0, 0.08) 1px, transparent 1px),
+                radial-gradient(circle at 95% 55%, rgba(0, 0, 0, 0.06) 1px, transparent 1px),
+                radial-gradient(circle at 5% 65%, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+                radial-gradient(circle at 65% 5%, rgba(0, 0, 0, 0.07) 1px, transparent 1px),
+                radial-gradient(circle at 35% 95%, rgba(0, 0, 0, 0.08) 1px, transparent 1px),
+                radial-gradient(circle at 55% 35%, rgba(0, 0, 0, 0.06) 1px, transparent 1px),
+                /* Leaf-like shapes using elliptical gradients */
+                radial-gradient(ellipse 8px 4px at 20% 30%, rgba(0, 0, 0, 0.04) 30%, transparent 60%),
+                radial-gradient(ellipse 6px 3px at 80% 20%, rgba(0, 0, 0, 0.035) 25%, transparent 55%),
+                radial-gradient(ellipse 7px 3.5px at 40% 70%, rgba(0, 0, 0, 0.03) 28%, transparent 58%),
+                radial-gradient(ellipse 5px 2.5px at 70% 80%, rgba(0, 0, 0, 0.05) 32%, transparent 62%),
+                radial-gradient(ellipse 9px 4.5px at 10% 60%, rgba(0, 0, 0, 0.04) 25%, transparent 50%),
+                radial-gradient(ellipse 6px 3px at 90% 40%, rgba(0, 0, 0, 0.035) 30%, transparent 60%),
+                /* Additional stippling dots for texture */
+                radial-gradient(circle at 30% 10%, rgba(0, 0, 0, 0.04) 0.5px, transparent 0.5px),
+                radial-gradient(circle at 70% 90%, rgba(0, 0, 0, 0.03) 0.5px, transparent 0.5px),
+                radial-gradient(circle at 10% 40%, rgba(0, 0, 0, 0.05) 0.5px, transparent 0.5px),
+                radial-gradient(circle at 90% 60%, rgba(0, 0, 0, 0.04) 0.5px, transparent 0.5px);
+            
+            background-size: 
+                40px 40px, 40px 40px, 40px 40px, 40px 40px, 40px 40px,
+                40px 40px, 40px 40px, 40px 40px, 40px 40px, 40px 40px,
+                60px 60px, 60px 60px, 60px 60px, 60px 60px, 60px 60px, 60px 60px,
+                20px 20px, 20px 20px, 20px 20px, 20px 20px;
+            
+            background-position:
+                0 0, 20px 20px, 10px 30px, 30px 10px, 5px 25px,
+                35px 15px, 15px 5px, 25px 35px, 5px 35px, 35px 5px,
+                0 0, 30px 30px, 20px 10px, 10px 40px, 40px 20px, 50px 50px,
+                0 0, 10px 10px, 5px 15px, 15px 5px;
+      		  }
+        
 			/* Responsive */
 			@media screen and (max-width: 736px) {
 				#header .content {
@@ -411,6 +569,24 @@
 				
 				form .field.half {
 					width: 100%;
+				}
+				.announcement-box {
+					margin: 20px 16px;
+					padding: 24px;
+				}
+				
+				.event-title {
+					font-size: 20px;
+				}
+				
+				.detail-item {
+					flex-direction: column;
+					gap: 4px;
+				}
+				
+				.read-more-container {
+					margin-left: 0;
+					margin-top: 8px;
 				}
 			}
 		</style>
@@ -444,6 +620,32 @@
 						<span>Contact</span>
 					</a>
 				</nav>
+				<div class="announcement-box stippled-leaves-bg">
+					<div class="nature-accent"></div>
+					
+					<h2 class="event-title">Rooting Walk: An Invitation to Slow Down</h2>
+					
+					<div class="event-details">
+						<div class="detail-item">
+							<span class="detail-label">When:</span>
+							<span class="detail-content">Saturday, June 7th, 11:00 AM – 12:30 PM</span>
+						</div>
+						
+						<div class="detail-item">
+							<span class="detail-label">Where:</span>
+							<span class="detail-content">Berea Baptist Church</span>
+							<span class="detail-content"><a href="https://maps.app.goo.gl/nReQnTBJDtcYpsqL7">(google maps)</a></span>
+						</div>
+						
+						<div class="read-more-container">
+							<p class="rsvp-text">Spots are limited — RSVP required</p>
+						</div>
+					</div>
+					
+					<div class="rsvp-notice">
+						<a href="#rootingwalks" class="internal-link">Learn More</a>
+					</div>
+				</div>
 			</header>
 
 			<!-- Main -->
@@ -458,11 +660,14 @@
 						<p>My mentoring approach focuses on developing safety and presence as the foundation for transformation. Rather than trying to fix or change ourselves, we learn to be with what is actually happening in our bodies, emotions, and lived experience.</p>
 						
 						<p>Together, we explore:</p>
-						<p>• How to create safety within yourself so you can feel your fears without being overwhelmed by them<br>
-						• Practices for staying present with difficult emotions and sensations<br>
-						• Ways to recognize and interrupt self-sabotaging patterns<br>
-						• Embodied techniques for metabolizing trauma and conditioning<br>
-						• How to develop authentic relationship with yourself and others</p>
+						<p> How to create safety within yourself so you can feel your fears without being overwhelmed by them<br>
+						<ul>
+							<li>How to create safety within yourself so you can feel your fears without being overwhelmed by them</li>
+							<li>Practices for staying present with difficult emotions and sensations</li>
+							<li>Ways to recognize and interrupt self-sabotaging patterns</li>
+							<li>Embodied techniques for metabolizing trauma and conditioning</li>
+							<li>How to develop authentic relationship with yourself and others</li>
+							</ul>
 						
 						<p>This work is not about following a system or method, but about learning to trust your own capacity for healing and presence. We work at your pace, honoring what wants to emerge and what needs to be held with gentleness.</p>
 						
@@ -477,18 +682,41 @@
 					<div class="close"><i class="fas fa-times"></i></div>
 					<div class="content">
 						<h2>Rooting Walks</h2>
-						<p>Rooting Walks are a combination of facilitated movement, somatics, and breathwork in small groups on walks in nature.</p>
-						
-						<p>Rooting Walks are about grounding into our bodies, in this vibrant earth, with our breath, through movement and meditation, together. In our fragmented, incoherent and increasingly artificial lives, Presence is more important than ever.</p>
-						
-						<p>Come bathe yourself in the richness of this abundant, present, now, as an invitation to your whole being, to stay right here. Presence is being alive inside what is actually happening, what is real here and now, this living conversation, of chemistry, emotion, sensation, energy, we find ourselves growing inside.</p>
-						
-						<p>Presence is experiencing your own participation within your own relational life, your own seasonal and dynamic self, and the whole ecology of your embodied existence.</p>
-						
-						<p>These walks happen in the beautiful natural settings around Asheville, North Carolina. No experience necessary - just bring yourself and comfortable walking shoes. We move slowly, pause frequently, and honor whatever arises in the group container.</p>
-						
-						<p>Each walk includes gentle movement practices, breathing exercises, moments of silence, and opportunities for sharing if you feel called to. The emphasis is on being present together in nature, allowing the earth to support our nervous systems and our return to embodied presence.</p>
-					
+						<p>Rooting Walks are guided nature experiences blending somatic movement, breathwork, stillness, and shared presence. Set in the forests and trails around Asheville, these walks offer a gentle space to return to your body, your breath, and the earth — together, in a small group. No experience is necessary — just bring yourself, comfortable shoes, and an openness to presence.</p>
+
+						<p>Each walk is slow-paced with frequent pauses, including simple practices like grounding, breathing, and noticing. We move in and out of silence, sometimes sharing reflections, sometimes just walking side by side. It’s a space for realness — to feel, to rest, to reconnect with the ecology of your own body and the living world around you.</p>
+							
+						<p>These walks are an invitation to stay right here — to meet yourself and the moment as it is. Rooting Walks aren’t about fixing anything — they’re about remembering what’s already whole and finding belonging in the richness of now.</p>
+
+						<h2>What To Expect</h2>
+						<ul>
+							<li>A slow-paced, gentle walk through nature (roughly 2-3 miles)</li>
+							<li>Frequent pauses to breathe, notice, reflect, and reconnect</li>
+							<li>Opportunities for quiet, inner listening as well as optional shared reflection</li>
+							<li>An opening and closing circle, to honor the moment and each other</li>
+							<li>A welcoming space for all bodies, all emotions, and all levels of experience</li>
+						  </ul>  
+
+						<h2>What To Bring</h2>
+						<ul>
+							<li>A small backpack or bag</li>
+							<li>A water bottle</li>
+							<li>A raincoat or layer in case of shifting weather</li>
+							<li>Good walking shoes (not fancy, just something you’re comfortable in)</li>
+							<li>Optional: a journal, something small and meaningful to carry, or a small mat/sit pad for circle time</li>
+						  </ul>
+
+						<h2>Who This Is For</h2>
+						<p>You. Especially if you're feeling raw, scattered, inspired, burnt out, grieving, curious, or just want to be around others in a real and grounded way.</p>
+
+						<p>You don’t need to be “into mindfulness.” You don’t need to have a good reason. Just come. Be. See what happens when we walk without needing to go anywhere.</p>
+
+						<h2>Accessability & Energy</h2>
+						<p>This walk is designed to be accessible and restorative. There will be moments of stillness, gentle movement, and optional expression. It’s ideal for people looking for a soft, grounding re-entry into the natural world and themselves.</p>
+
+						<h2>Weather Note</h2>
+						<p>Asheville weather can shift quickly. A light rain won’t cancel us, but thunderstorms might. In the event of unsafe weather, you’ll get an update by 9 AM the day of.</p>
+
                         <p><ul><b><a href="#contact" class="internal-link">Send me a message here if you're interested!</a></b></ul>
 
                     </div>
