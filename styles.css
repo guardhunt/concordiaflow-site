@@ -521,6 +521,7 @@ form .field.half {
 form label {
 	display: block;
 	margin-bottom: 0.5rem;
+	font-size: 1rem;
 	font-weight: 600;
 	color: rgba(28, 28, 26, 0.92);
 }
@@ -798,12 +799,57 @@ form input[type="submit"]:hover {
 		padding: 1.5rem;
 	}
 
+	/* Subpages: let text use more horizontal space on mobile */
+	#main article .content.modal-content {
+		padding: 0;
+	}
+
+	/* Mobile typography: scale down more aggressively */
+	#main article .modal-label {
+		font-size: clamp(10px, 2.8vw, 12px);
+		letter-spacing: 0.18em;
+	}
+
+	#main article .modal-content p,
+	#main article .modal-content li,
+	#main article .modal-copy,
+	#main article .modal-subhead {
+		font-size: clamp(15px, 4.1vw, 17px);
+		line-height: 1.85;
+	}
+
+	#main article .modal-subhead {
+		max-width: none;
+	}
+
+	/* Contact form: ensure it fits viewport width */
+	#contact-form {
+		width: 100%;
+		max-width: 100%;
+	}
+
+	form .field {
+		min-width: 0;
+	}
+
+	form input[type="text"],
+	form input[type="email"],
+	form select,
+	form textarea {
+		font-size: 0.95rem;
+		padding: 0.65rem 0.85rem;
+	}
+
+	form input[type="submit"] {
+		width: 100%;
+		padding: 0 1rem;
+	}
+
 	form .field.half {
 		width: 100%;
 	}
 
 	.announcement-box {
-		display: none;
 		margin: 20px 16px;
 		padding: 24px;
 	}
