@@ -364,6 +364,7 @@ a:hover {
 	max-width: 780px;
 	margin: 0 auto;
 	padding: clamp(1.5rem, 3.5vw, 3rem);
+	padding-bottom: calc(clamp(1.5rem, 3.5vw, 3rem) + 0.75rem);
 }
 
 #main article .modal-section {
@@ -851,6 +852,7 @@ form input[type="submit"]:hover {
 
 	#main article .modal-surface-inner {
 		padding: 1.5rem;
+		padding-bottom: 2.25rem;
 	}
 
 	/* Subpages: let text use more horizontal space on mobile */
