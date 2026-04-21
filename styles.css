@@ -280,6 +280,11 @@ a:hover {
 	padding: clamp(1.5rem, 3.5vw, 3.25rem);
 }
 
+/* Subpages: remove top padding on the modal content wrapper */
+#main article .content.modal-content {
+	padding-top: 0;
+}
+
 /* Shared modal content wrapper */
 #main article .modal-content p,
 #main article .modal-content li {
@@ -368,6 +373,55 @@ a:hover {
 
 #main article .modal-section:last-of-type {
 	border-bottom: none;
+}
+
+#main article .modal-cta {
+	text-align: center;
+}
+
+#main article .modal-cta .modal-copy {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#about-content .about-profile {
+	display: inline-flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.85rem;
+	max-width: 320px;
+	margin: 0 auto;
+}
+
+#about-content .about-profile__image {
+	display: block;
+	width: min(320px, 100%);
+	height: auto;
+	border-radius: 14px;
+	box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+#about-content .about-profile__meta {
+	width: 100%;
+	text-align: left;
+}
+
+#about-content .about-profile__name {
+	font-family: 'Cormorant Garamond', Georgia, serif;
+	font-size: 24px;
+	font-weight: 300;
+	line-height: 1.1;
+	color: #1c1c1a;
+}
+
+#about-content .about-profile__title {
+	margin-top: 0.3rem;
+	font-family: 'Jost', system-ui, sans-serif;
+	font-size: 14px;
+	font-weight: 400;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: rgba(28, 28, 26, 0.62);
 }
 
 #main article .modal-label {
@@ -802,6 +856,11 @@ form input[type="submit"]:hover {
 	/* Subpages: let text use more horizontal space on mobile */
 	#main article .content.modal-content {
 		padding: 0;
+	}
+
+	/* Mobile: close button matches the modal surface off-white */
+	#main article {
+		background: #faf9f7;
 	}
 
 	/* Mobile typography: scale down more aggressively */
