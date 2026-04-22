@@ -21,6 +21,10 @@ body.modal-open {
 	overflow: hidden;
 }
 
+body.modal-open .ripple-layer {
+	display: none;
+}
+
 h1, h2, h3, h4 {
 	color: #ffffff;
 	font-weight: 600;
@@ -116,9 +120,31 @@ a:hover {
 	transition: max-width 0.325s ease, padding 0.325s ease;
 }
 
+/* Ripple overlay (full viewport on landing page) */
+.ripple-layer {
+	position: fixed;
+	inset: 0;
+	pointer-events: none;
+	overflow: hidden;
+	z-index: 0;
+	opacity: 0.35;
+}
+.ripple-layer svg {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
 #header .content .inner {
 	max-width: 100%;
 	margin: 0 auto;
+}
+
+
+.ripple-layer svg {
+	display: block;
+	width: 100%;
+	height: 100%;
 }
 
 #header .content h1 {
@@ -149,6 +175,7 @@ a:hover {
 	position: relative;
 	perspective: 600px;
 	perspective-origin: 50% 48%;
+	z-index: 2;
 }
 
 .logo-static {
@@ -536,7 +563,27 @@ a:hover {
 	letter-spacing: 0.2em;
 	text-transform: uppercase;
 	color: rgba(28, 28, 26, 0.42);
-	margin-bottom: 1.25rem;
+	margin: 0 0 1.25rem 0;
+}
+
+#main article .modal-page-header {
+	margin-bottom: 1.75rem;
+}
+
+#main article .modal-page-title {
+	font-family: 'Jost', system-ui, sans-serif;
+	font-size: 13px;
+	font-weight: 500;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+	color: rgba(28, 28, 26, 0.42);
+	margin: 0;
+}
+
+#main article .modal-page-divider {
+	border: none;
+	border-top: 1px solid rgba(28, 28, 26, 0.12);
+	margin: 1rem 0 0 0;
 }
 
 #main article .modal-headline {
