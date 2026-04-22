@@ -217,7 +217,10 @@ a:hover {
 	align-items: center;
 	justify-content: center;
 	z-index: 10000;
-	backdrop-filter: blur(4px);
+	backdrop-filter: blur(8px);
+	/* Reduce scroll-time backdrop-filter flicker in Chrome by keeping a stable compositor layer. */
+	will-change: opacity;
+	transform: translateZ(0);
 }
 
 #main.active { display: flex; }
@@ -238,7 +241,7 @@ a:hover {
 	overflow-y: auto;
 	margin: 2rem;
 	position: relative;
-	transform: translateY(2rem);
+	transform: translateY(2rem) translateZ(0);
 	opacity: 0;
 	transition: transform 0.325s ease, opacity 0.325s ease;
 	color: #1c1c1a;
@@ -249,7 +252,7 @@ a:hover {
 }
 
 #main.active article {
-	transform: translateY(0);
+	transform: translateY(0) translateZ(0);
 	opacity: 1;
 }
 
