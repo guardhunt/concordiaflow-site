@@ -4,6 +4,69 @@ const main = document.getElementById('main');
 const articles = document.querySelectorAll('#main article');
 const closeButtons = document.querySelectorAll('.close');
 
+function randomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function scheduleLogoFlaps() {
+  const scene = document.querySelector('.logo-scene');
+  if (!scene) return;
+
+  const rightWing = scene.querySelector('.logo-wing-wrap.right');
+  if (!rightWing) return;
+
+  let nextTimerId = null;
+  let stopTimerId = null;
+  let burstToken = 0;
+
+  const clearTimers = () => {
+    if (nextTimerId !== null) window.clearTimeout(nextTimerId);
+    if (stopTimerId !== null) window.clearTimeout(stopTimerId);
+    nextTimerId = null;
+    stopTimerId = null;
+  };
+
+  const endBurst = (token) => {
+    if (token !== burstToken) return; // stale callback
+    scene.classList.remove('is-flapping');
+    scheduleNext();
+  };
+
+  const scheduleNext = () => {
+    clearTimers();
+    const delayMs = randomInt(4_000, 15_000);
+    nextTimerId = window.setTimeout(() => {
+      const flapCount = randomInt(2, 5);
+      scene.style.setProperty('--flap-count', String(flapCount));
+
+      // Start a fresh burst. Bump token so any previous callbacks become no-ops.
+      burstToken += 1;
+      const token = burstToken;
+
+      // Restart animation deterministically.
+      scene.classList.remove('is-flapping');
+      void scene.offsetWidth;
+      scene.classList.add('is-flapping');
+
+      rightWing.addEventListener(
+        'animationend',
+        () => endBurst(token),
+        { once: true }
+      );
+
+      // Fallback stop condition (handles background tab throttling / missed animationend).
+      const speedStr = getComputedStyle(rightWing).animationDuration;
+      const speedMs = speedStr.endsWith('ms')
+        ? parseFloat(speedStr)
+        : parseFloat(speedStr) * 1000;
+      const totalMs = Math.max(1, speedMs) * flapCount + 200;
+      stopTimerId = window.setTimeout(() => endBurst(token), totalMs);
+    }, delayMs);
+  };
+
+  scheduleNext();
+}
+
 function showArticle(id) {
   const targetArticle = document.getElementById(id + '-content');
 
@@ -92,6 +155,8 @@ window.addEventListener('DOMContentLoaded', () => {
       main.classList.remove('no-transition');
     });
   }
+
+  scheduleLogoFlaps();
 });
 
 const form = document.getElementById('contact-form');
