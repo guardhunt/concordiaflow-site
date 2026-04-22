@@ -16,6 +16,7 @@ function showArticle(id) {
   if (targetArticle) {
     targetArticle.style.display = 'block';
     main.classList.add('active');
+    document.body.classList.add('modal-open');
   }
 }
 
@@ -33,6 +34,7 @@ navLinks.forEach((link) => {
 closeButtons.forEach((button) => {
   button.addEventListener('click', () => {
     main.classList.remove('active');
+    document.body.classList.remove('modal-open');
     window.location.hash = ''; // Clear hash
     setTimeout(() => {
       articles.forEach((article) => {
@@ -46,6 +48,7 @@ closeButtons.forEach((button) => {
 main.addEventListener('click', (e) => {
   if (e.target === main) {
     main.classList.remove('active');
+    document.body.classList.remove('modal-open');
     window.location.hash = '';
     setTimeout(() => {
       articles.forEach((article) => {
@@ -59,6 +62,7 @@ main.addEventListener('click', (e) => {
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && main.classList.contains('active')) {
     main.classList.remove('active');
+    document.body.classList.remove('modal-open');
     window.location.hash = '';
     setTimeout(() => {
       articles.forEach((article) => {

@@ -13,6 +13,14 @@ body {
 	line-height: 1.65;
 }
 
+html, body {
+	height: 100%;
+}
+
+body.modal-open {
+	overflow: hidden;
+}
+
 h1, h2, h3, h4 {
 	color: #ffffff;
 	font-weight: 600;
@@ -827,8 +835,18 @@ form input[type="submit"]:hover {
 
 /* Responsive */
 @media screen and (max-width: 736px) {
+	/* Use the "small viewport" unit to avoid extra scroll from mobile browser UI. */
+	#wrapper {
+		min-height: 100svh;
+	}
+
+	#header {
+		margin-bottom: 1.25rem;
+	}
+
 	#header .content {
-		padding: 3rem 2rem;
+		padding: 2.25rem 1.5rem;
+		margin-bottom: 1.75rem;
 	}
 
 	#header .content h1 {
@@ -842,6 +860,7 @@ form input[type="submit"]:hover {
 	#nav a {
 		min-width: 8rem;
 		height: 8rem;
+		margin-bottom: 0.5rem;
 	}
 
 	#main article {
