@@ -1,10 +1,10 @@
 {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  "name": "ConcordiaFlow",
+  "name": "ConcordiaSpring",
   "description": "Somatic coaching and Rooting Walks in Asheville, NC—supporting nervous system regulation, embodied presence, and deeper connection.",
-  "url": "https://concordiaflow.com/",
-  "image": "https://concordiaflow.com/media/ConcordiaFlow_new_wht.png",
+  "url": "https://concordiaspring.com/",
+  "image": "https://concordiaspring.com/media/ConcordiaFlow_new_wht.png",
   "email": "christopher@cwcoachingcollective.com",
   "address": {
     "@type": "PostalAddress",

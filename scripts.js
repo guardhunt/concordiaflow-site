@@ -125,13 +125,14 @@ window.addEventListener('DOMContentLoaded', () => {
 // ------------------------------------------------------------
 
 const form = document.getElementById('contact-form');
+const RECAPTCHA_SITE_KEY = '6Lf_nFArAAAAAAckh8n-KBDpXEaf4dL21gQN1MqA';
 
 form.addEventListener('submit', function (e) {
   e.preventDefault();
 
   grecaptcha.ready(function () {
     grecaptcha
-      .execute('6Lf_nFArAAAAAAckh8n-KBDpXEaf4dL21gQN1MqA', { action: 'submit' })
+      .execute(RECAPTCHA_SITE_KEY, { action: 'submit' })
       .then(function (token) {
         document.getElementById('recaptcha-response').value = token;
 
