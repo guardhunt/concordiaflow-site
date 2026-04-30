@@ -20,6 +20,14 @@
 		<meta name="apple-mobile-web-app-title" content="ConcordiaSpring" />
 		<link rel="manifest" href="favicon/site.webmanifest" />
 		<link rel="stylesheet" href="styles.css" />
+		<script src="https://www.google.com/recaptcha/enterprise.js?render=6LcOKtIsAAAAALlbrsGwein3JMAsM8xFPOX7K9PH"></script>
+		<script>
+			function onSubmit(token) {
+				const tokenInput = document.getElementById("recaptcha-response");
+				if (tokenInput) tokenInput.value = token;
+				if (window.submitContactForm) window.submitContactForm();
+			}
+		</script>
 		<script defer src="animations.js"></script>
 		<script defer src="scripts.js"></script>
 	</head>
@@ -345,7 +353,15 @@
 										<input type="hidden" name="g-recaptcha-response" id="recaptcha-response">
 									
 										<div class="actions">
-											<input type="submit" value="Send Message">
+											<button
+												type="submit"
+												class="g-recaptcha"
+												data-sitekey="6LcOKtIsAAAAALlbrsGwein3JMAsM8xFPOX7K9PH"
+												data-callback="onSubmit"
+												data-action="submit"
+											>
+												Send Message
+											</button>
 										</div>
 									</form>
 								</section>
@@ -368,8 +384,6 @@
 				</article>
 			</div>
 		</div>
-
-        <script src="https://www.google.com/recaptcha/api.js?render=explicit"></script>
 
 	</body>
 </html>

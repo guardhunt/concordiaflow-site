@@ -125,37 +125,48 @@ window.addEventListener('DOMContentLoaded', () => {
 // ------------------------------------------------------------
 
 const form = document.getElementById('contact-form');
-const RECAPTCHA_SITE_KEY = '6Lf_nFArAAAAAAckh8n-KBDpXEaf4dL21gQN1MqA';
+const RECAPTCHA_SITE_KEY = '6LcOKtIsAAAAALlbrsGwein3JMAsM8xFPOX7K9PH';
 
-form.addEventListener('submit', function (e) {
-  e.preventDefault();
+window.submitContactForm = function submitContactForm() {
+  if (!form) return;
 
-  grecaptcha.ready(function () {
-    grecaptcha
-      .execute(RECAPTCHA_SITE_KEY, { action: 'submit' })
-      .then(function (token) {
-        document.getElementById('recaptcha-response').value = token;
+  const formData = new FormData(form);
 
-        const formData = new FormData(form);
+  fetch('https://formspree.io/f/xkgbwbaj', {
+    method: 'POST',
+    body: formData,
+    headers: {
+      Accept: 'application/json',
+    },
+  })
+    .then((response) => {
+      if (response.ok) {
+        alert('Thank you! Your message has been sent.');
+        form.reset();
+      } else {
+        alert('Oops! There was a problem. Please try again.');
+      }
+    })
+    .catch(() => {
+      alert('An error occurred. Please try again later.');
+    });
+};
 
-        fetch('https://formspree.io/f/xkgbwbaj', {
-          method: 'POST',
-          body: formData,
-          headers: {
-            Accept: 'application/json',
-          },
-        })
-          .then((response) => {
-            if (response.ok) {
-              alert('Thank you! Your message has been sent.');
-              form.reset();
-            } else {
-              alert('Oops! There was a problem. Please try again.');
-            }
-          })
-          .catch((error) => {
-            alert('An error occurred. Please try again later.');
-          });
-      });
+if (form) {
+  form.addEventListener('submit', function (e) {
+    // Let reCAPTCHA's button handler invoke `onSubmit(token)` (defined in index.html).
+    // We only prevent native submission so the page doesn't reload.
+    e.preventDefault();
+
+    // Fallback: if Enterprise didn't auto-run (blocked script/adblock), attempt programmatic execution.
+    if (window.grecaptcha?.enterprise?.execute) {
+      window.grecaptcha.enterprise
+        .execute(RECAPTCHA_SITE_KEY, { action: 'submit' })
+        .then(function (token) {
+          const tokenInput = document.getElementById('recaptcha-response');
+          if (tokenInput) tokenInput.value = token;
+          window.submitContactForm && window.submitContactForm();
+        });
+    }
   });
-});
+}
