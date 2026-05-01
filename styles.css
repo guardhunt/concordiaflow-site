@@ -517,18 +517,30 @@ a:hover {
 }
 
 #about-content .about-profile {
-	display: inline-flex;
+	display: flex;
 	flex-direction: column;
 	align-items: center;
 	gap: 0.85rem;
-	max-width: 320px;
+	width: 100%;
+	max-width: 260px;
+}
+
+#about-content .about-profiles {
+	display: flex;
+	gap: 1.25rem;
+	justify-content: center;
+	align-items: flex-start;
+	flex-wrap: wrap;
+	max-width: 680px;
 	margin: 0 auto;
 }
 
 #about-content .about-profile__image {
 	display: block;
-	width: min(320px, 100%);
-	height: auto;
+	width: 100%;
+	height: 350px;
+	object-fit: cover;
+	object-position: center;
 	border-radius: 14px;
 	box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
 }
@@ -1089,5 +1101,17 @@ form input[type="submit"]:hover {
 	.read-more-container {
 		margin-left: 0;
 		margin-top: 8px;
+	}
+
+	#about-content .about-profiles {
+		gap: 1.5rem;
+	}
+
+	#about-content .about-profile {
+		max-width: 320px;
+	}
+
+	#about-content .about-profile__image {
+		height: 280px;
 	}
 }
