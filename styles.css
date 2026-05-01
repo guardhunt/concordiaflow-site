@@ -1113,5 +1113,6 @@ form input[type="submit"]:hover {
 
 	#about-content .about-profile__image {
 		height: 280px;
+		object-position: top center;
 	}
 }
