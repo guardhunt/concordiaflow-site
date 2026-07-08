@@ -309,7 +309,19 @@ a:hover {
 	vertical-align: middle;
 }
 
-#nav a[href="#rootingwalks"] .icon::before {
+#nav a[href="#immersions"] .icon::before {
+	content: "";
+	display: inline-block;
+	width: 90px;
+	height: 90px;
+	background-image: url('media/expression-wt-sm.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+	margin-right: 6px;
+	vertical-align: middle;
+}
+
+#nav a[href="#yoga"] .icon::before {
 	content: "";
 	display: inline-block;
 	width: 90px;
@@ -438,13 +450,15 @@ a:hover {
 }
 
 /* Match coaching surface layout on other subpages */
-#rootingwalks-content,
+#immersions-content,
+#yoga-content,
 #about-content,
 #contact-content {
 	padding-bottom: 0;
 }
 
-#rootingwalks-content .modal-content,
+#immersions-content .modal-content,
+#yoga-content .modal-content,
 #about-content .modal-content,
 #contact-content .modal-content {
 	padding: 0;
@@ -596,6 +610,11 @@ a:hover {
 	border: none;
 	border-top: 1px solid rgba(28, 28, 26, 0.12);
 	margin: 1rem 0 0 0;
+}
+
+/* About page: dividers that need breathing room below them */
+#about-content .about-divider {
+	margin: 1.5rem 0 1.5rem 0;
 }
 
 #main article .modal-headline {
@@ -791,6 +810,85 @@ form input[type="submit"]:hover {
 	background: rgba(28, 28, 26, 0.85);
 }
 
+form button[type="submit"] {
+	background: #1c1c1a;
+	border: 0;
+	border-radius: 4px;
+	color: #ffffff;
+	cursor: pointer;
+	display: inline-block;
+	font-family: inherit;
+	font-size: 0.9rem;
+	font-weight: 600;
+	height: 2.75rem;
+	letter-spacing: 0.1rem;
+	line-height: 2.75rem;
+	padding: 0 2rem;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	transition: background-color 0.25s ease;
+	white-space: nowrap;
+}
+
+form button[type="submit"]:hover {
+	background: rgba(28, 28, 26, 0.85);
+}
+
+.yoga-location-field {
+	margin-top: -0.25rem;
+}
+
+.yoga-location-label {
+	display: block;
+	margin-bottom: 0.5rem;
+	font-size: 1rem;
+	font-weight: 600;
+	color: rgba(28, 28, 26, 0.92);
+}
+
+.yoga-location-display {
+	font-size: 0.95rem;
+	line-height: 1.6;
+	color: rgba(28, 28, 26, 0.78);
+	margin: 0;
+}
+
+.splitforms-attribution {
+	margin-top: 0.75rem;
+	font-size: 11px;
+	color: rgba(28, 28, 26, 0.45);
+	text-align: right;
+}
+
+.splitforms-attribution a {
+	border-bottom: none;
+	color: inherit;
+}
+
+.splitforms-attribution a:hover {
+	color: rgba(28, 28, 26, 0.7);
+}
+
+.flatpickr-calendar {
+	z-index: 10001;
+}
+
+.form-status {
+	margin-top: 0.85rem;
+	margin-bottom: 0;
+	font-size: 0.95rem;
+	line-height: 1.6;
+}
+
+.form-status[data-tone="success"] {
+	color: rgba(25, 92, 25, 0.85);
+}
+
+.form-status[data-tone="error"] {
+	color: rgba(150, 30, 30, 0.85);
+}
+
 /* Social Links */
 .social-links {
 	display: flex;
@@ -977,6 +1075,17 @@ form input[type="submit"]:hover {
 .u-border-bottom-none { border-bottom: none !important; }
 .u-border-top-none { border-top: none !important; }
 .u-maxw-52ch { max-width: 52ch !important; }
+.u-visually-hidden {
+	position: absolute !important;
+	width: 1px !important;
+	height: 1px !important;
+	padding: 0 !important;
+	margin: -1px !important;
+	overflow: hidden !important;
+	clip: rect(0, 0, 0, 0) !important;
+	white-space: nowrap !important;
+	border: 0 !important;
+}
 
 /* One-off headline that previously used inline styles */
 .modal-headline--tagline {
@@ -1063,6 +1172,11 @@ form input[type="submit"]:hover {
 		max-width: 100%;
 	}
 
+	#yoga-booking-form {
+		width: 100%;
+		max-width: 100%;
+	}
+
 	form .field {
 		min-width: 0;
 	}
@@ -1076,6 +1190,11 @@ form input[type="submit"]:hover {
 	}
 
 	form input[type="submit"] {
+		width: 100%;
+		padding: 0 1rem;
+	}
+
+	form button[type="submit"] {
 		width: 100%;
 		padding: 0 1rem;
 	}
