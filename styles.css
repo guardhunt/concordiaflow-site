@@ -835,6 +835,46 @@ form button[type="submit"]:hover {
 	background: rgba(28, 28, 26, 0.85);
 }
 
+form button[type="submit"]:disabled {
+	cursor: default;
+	opacity: 1;
+}
+
+form button[type="submit"].is-success {
+	background: #ECFDDF;
+	color: #1c1c1a;
+}
+
+form button[type="submit"].is-success:hover {
+	background: #ECFDDF;
+}
+
+form button[type="submit"] .loading-dots span {
+	animation: loading-dot 1.4s infinite ease-in-out both;
+	opacity: 0.2;
+}
+
+form button[type="submit"] .loading-dots span:nth-child(1) {
+	animation-delay: 0s;
+}
+
+form button[type="submit"] .loading-dots span:nth-child(2) {
+	animation-delay: 0.2s;
+}
+
+form button[type="submit"] .loading-dots span:nth-child(3) {
+	animation-delay: 0.4s;
+}
+
+@keyframes loading-dot {
+	0%, 80%, 100% {
+		opacity: 0.2;
+	}
+	40% {
+		opacity: 1;
+	}
+}
+
 .yoga-location-field {
 	margin-top: -0.25rem;
 }

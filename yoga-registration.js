@@ -16,6 +16,8 @@ const yogaLocationDisplay = document.getElementById('yoga-location-display');
 const yogaAttendeesSelect = document.getElementById('yoga-attendees');
 const yogaSubmitButton = document.getElementById('yoga-submit');
 const yogaStatus = document.getElementById('yoga-form-status');
+const SUBMIT_LABEL = 'Submit';
+let successResetTimer = null;
 
 const YOGA_LOCATIONS = {
   A: 'Wellspring Wellness, 960 Tunnel Rd, Asheville, NC 28805',
@@ -88,10 +90,55 @@ function updateYogaLocationFromTime() {
   if (yogaLocationField) yogaLocationField.hidden = !location;
 }
 
-function setSubmitting(isSubmitting) {
+function clearSuccessResetTimer() {
+  if (successResetTimer) {
+    clearTimeout(successResetTimer);
+    successResetTimer = null;
+  }
+}
+
+function resetSubmitButton() {
   if (!yogaSubmitButton) return;
-  yogaSubmitButton.disabled = isSubmitting;
-  yogaSubmitButton.textContent = isSubmitting ? 'Finalizing…' : 'Reserve your spot';
+  clearSuccessResetTimer();
+  yogaSubmitButton.disabled = false;
+  yogaSubmitButton.classList.remove('is-loading', 'is-success');
+  yogaSubmitButton.textContent = SUBMIT_LABEL;
+}
+
+function setButtonLoading(isLoading) {
+  if (!yogaSubmitButton) return;
+
+  clearSuccessResetTimer();
+  yogaSubmitButton.classList.remove('is-success');
+  yogaSubmitButton.disabled = isLoading;
+
+  if (!isLoading) {
+    yogaSubmitButton.classList.remove('is-loading');
+    yogaSubmitButton.textContent = SUBMIT_LABEL;
+    return;
+  }
+
+  yogaSubmitButton.classList.add('is-loading');
+  yogaSubmitButton.replaceChildren('Finalizing');
+
+  const dots = document.createElement('span');
+  dots.className = 'loading-dots';
+  dots.setAttribute('aria-hidden', 'true');
+  dots.innerHTML = '<span>.</span><span>.</span><span>.</span>';
+  yogaSubmitButton.appendChild(dots);
+}
+
+function setButtonSuccess() {
+  if (!yogaSubmitButton) return;
+  yogaSubmitButton.disabled = true;
+  yogaSubmitButton.classList.remove('is-loading');
+  yogaSubmitButton.classList.add('is-success');
+  yogaSubmitButton.textContent = 'Success!';
+}
+
+function scheduleSubmitButtonReset() {
+  clearSuccessResetTimer();
+  successResetTimer = setTimeout(resetSubmitButton, 3000);
 }
 
 function yogaPayloadFromForm() {
@@ -164,6 +211,8 @@ if (yogaForm) {
       yogaForm.reset();
       resetYogaTimeAndLocation();
       setYogaStatus("We've recieved your reservation. Check your email for confimation.", 'success');
+      setButtonSuccess();
+      scheduleSubmitButtonReset();
       return;
     }
 
@@ -174,7 +223,7 @@ if (yogaForm) {
     }
 
     try {
-      setSubmitting(true);
+      setButtonLoading(true);
 
       const response = await fetch(WORKER_ENDPOINT, {
         method: 'POST',
@@ -196,19 +245,22 @@ if (yogaForm) {
         setYogaStatus("We've recieved your reservation. Check your email for confimation.", 'success');
         yogaForm.reset();
         resetYogaTimeAndLocation();
-      } else {
-        setYogaStatus(
-          'Something went wrong submitting your reservation. Please try again, or email me directly.',
-          'error',
-        );
+        setButtonSuccess();
+        scheduleSubmitButtonReset();
+        return;
       }
+
+      setYogaStatus(
+        'Something went wrong submitting your reservation. Please try again, or email me directly.',
+        'error',
+      );
+      setButtonLoading(false);
     } catch {
       setYogaStatus(
         'Something went wrong submitting your reservation. Please try again, or email me directly.',
         'error',
       );
-    } finally {
-      setSubmitting(false);
+      setButtonLoading(false);
     }
   });
 }
