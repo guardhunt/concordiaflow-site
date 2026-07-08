@@ -3,6 +3,8 @@
 // Exposes a small API on window.ConcordiaAnimations.
 // ------------------------------------------------------------
 
+const ENABLE_RIPPLE_OVERLAY = false;
+
 function randomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -254,7 +256,7 @@ function initRippleOverlay() {
 
 function initAnimations() {
   scheduleLogoFlaps();
-  const rippleController = initRippleOverlay();
+  const rippleController = ENABLE_RIPPLE_OVERLAY ? initRippleOverlay() : null;
   return { rippleController };
 }
 
