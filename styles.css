@@ -1293,11 +1293,11 @@ form button[type="submit"] .loading-dots span:nth-child(3) {
 	}
 
 	#main article .content {
-		padding: 2rem 1rem;
+		padding: 2rem;
 	}
 
 	#main article .modal-surface-inner {
-		padding: 1.5rem 0.75rem 2.25rem;
+		padding: 1.5rem 1.5rem 2.25rem;
 	}
 
 	/* Subpages: let text use more horizontal space on mobile */
