@@ -90,7 +90,7 @@
 					</div>
 				</div>
 				<nav id="nav">
-					<a href="#immersions">
+					<a href="#immersions" hidden aria-hidden="true" tabindex="-1">
 						<span class="icon"></span>
 						<span>Immersions</span>
 					</a>
@@ -219,8 +219,8 @@
                     </div>
 				</article>
 
-				<!-- Immersions -->
-				<article id="immersions-content">
+				<!-- Immersions (disabled — set ENABLE_IMMERSIONS = true in scripts.js to restore) -->
+				<article id="immersions-content" hidden aria-hidden="true">
 					<div class="close"><i class="fas fa-times"></i></div>
 					<div class="content modal-content">
 						<div class="modal-surface">
@@ -296,10 +296,13 @@
 									<hr class="modal-page-divider" />
 								</header>
 
-								<section class="modal-section u-pt-0 u-pb-0">
-									<p class="modal-copy">
+								<section class="modal-section u-pt-0">
+									<p class="modal-copy u-mb-0">
 										Heart of Tantra Yoga classes are an invitation to creating intimacy with self, by being with the body’s energy in motion moment by moment. Movements are breath-led and the sequence is just a guide, accessible to all body types and ages. The intention for this practice is allowing students to create their own practice by learning their breath’s power.
 									</p>
+									<div class="modal-scroll-cta">
+										<a href="#yoga-booking-section" class="modal-scroll-link">Reserve a class</a>
+									</div>
 								</section>
 
 								<section class="modal-section modal-section--dark yoga-pricing-section">
@@ -368,7 +371,7 @@
 									</p>
 								</section>
 
-								<section class="modal-section">
+								<section id="yoga-booking-section" class="modal-section">
 									<h3 class="modal-headline modal-hero-headline">Reserve a class</h3>
 									<p class="modal-copy">Please select preferred class time to see class location.</p>
 									<form id="yoga-booking-form" novalidate>

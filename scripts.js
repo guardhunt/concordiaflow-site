@@ -2,6 +2,8 @@
 // Navigation functionality
 // ------------------------------------------------------------
 
+const ENABLE_IMMERSIONS = false;
+
 const navLinks = document.querySelectorAll('#nav a');
 const main = document.getElementById('main');
 const articles = document.querySelectorAll('#main article');
@@ -17,12 +19,19 @@ const closeButtons = document.querySelectorAll('.close');
 
 let rippleController = null;
 
+function isSectionEnabled(id) {
+  if (id === 'immersions' && !ENABLE_IMMERSIONS) return false;
+  return true;
+}
+
 function resumeRipplesAfterClose() {
   if (!rippleController) return;
   window.setTimeout(() => rippleController && rippleController.resume(), 350);
 }
 
 function showArticle(id) {
+  if (!isSectionEnabled(id)) return;
+
   const targetArticle = document.getElementById(id + '-content');
 
   // Hide all articles
@@ -99,8 +108,34 @@ document.querySelectorAll('.internal-link').forEach((link) => {
   link.addEventListener('click', (e) => {
     e.preventDefault();
     const target = link.getAttribute('href').substring(1);
+    if (!isSectionEnabled(target)) return;
     window.location.hash = target;
     showArticle(target);
+  });
+});
+
+// Scroll to in-modal anchors (e.g. yoga booking form)
+function scrollModalTo(target) {
+  const container = target.closest('#main article');
+  if (!container) return;
+
+  const top =
+    container.scrollTop +
+    (target.getBoundingClientRect().top - container.getBoundingClientRect().top);
+
+  container.scrollTo({ top, behavior: 'smooth' });
+}
+
+document.querySelectorAll('.modal-scroll-link').forEach((link) => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const selector = link.getAttribute('href');
+    if (!selector || !selector.startsWith('#')) return;
+
+    const target = document.querySelector(selector);
+    if (!target) return;
+
+    scrollModalTo(target);
   });
 });
 
@@ -108,11 +143,15 @@ document.querySelectorAll('.internal-link').forEach((link) => {
 window.addEventListener('DOMContentLoaded', () => {
   const hash = window.location.hash.substring(1);
   if (hash) {
-    main.classList.add('no-transition');
-    showArticle(hash);
-    requestAnimationFrame(() => {
-      main.classList.remove('no-transition');
-    });
+    if (!isSectionEnabled(hash)) {
+      window.location.hash = '';
+    } else {
+      main.classList.add('no-transition');
+      showArticle(hash);
+      requestAnimationFrame(() => {
+        main.classList.remove('no-transition');
+      });
+    }
   }
 
   const anim = window.ConcordiaAnimations ? window.ConcordiaAnimations.init() : null;

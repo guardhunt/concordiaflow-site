@@ -562,6 +562,36 @@ a:hover {
 	text-align: center;
 }
 
+#main article .modal-scroll-cta {
+	margin-top: 1.5rem;
+	text-align: center;
+}
+
+#main article .modal-scroll-link {
+	display: inline-block;
+	background: #1c1c1a;
+	border: 0;
+	border-radius: 4px;
+	color: #ffffff;
+	cursor: pointer;
+	font-family: inherit;
+	font-size: 0.9rem;
+	font-weight: 600;
+	letter-spacing: 0.1rem;
+	line-height: 1;
+	padding: 0.9rem 2rem;
+	text-decoration: none;
+	text-transform: uppercase;
+	transition: background-color 0.25s ease;
+	white-space: nowrap;
+}
+
+#main article .modal-scroll-link:hover {
+	background: rgba(28, 28, 26, 0.85);
+	border-bottom-color: transparent;
+	color: #ffffff;
+}
+
 #main article .modal-cta .modal-copy {
 	margin-left: auto;
 	margin-right: auto;
@@ -1305,7 +1335,12 @@ form button[type="submit"] .loading-dots span:nth-child(3) {
 		0 0, 10px 10px, 5px 15px, 15px 5px;
 }
 
-/* Utilities (replaces former inline style="...") */
+/* Immersions disabled — set ENABLE_IMMERSIONS = true in scripts.js to restore */
+#nav a[href="#immersions"],
+#immersions-content,
+a.internal-link[href="#immersions"] {
+	display: none !important;
+}
 .u-pt-0 { padding-top: 0 !important; }
 .u-pb-0 { padding-bottom: 0 !important; }
 .u-mb-0 { margin-bottom: 0 !important; }
