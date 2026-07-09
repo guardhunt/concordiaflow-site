@@ -558,6 +558,16 @@ a:hover {
 	border-bottom-color: transparent;
 }
 
+#main article .modal-section--dark .modal-pull-quote {
+	color: rgba(255, 255, 255, 0.92);
+	border-left-color: rgba(255, 255, 255, 0.28);
+}
+
+#main article .modal-section--dark .modal-headline,
+#main article .modal-section--dark .modal-headline--tagline {
+	color: rgba(255, 255, 255, 0.95);
+}
+
 #main article .modal-cta {
 	text-align: center;
 }
