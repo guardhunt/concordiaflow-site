@@ -242,7 +242,7 @@ if (yogaForm) {
       }
 
       if (response.status === 200 && data && data.status === 'ok') {
-        setYogaStatus("We've recieved your reservation. Check your email for confimation.", 'success');
+        setYogaStatus("We've recieved your reservation. Check your email for confirmation.", 'success');
         yogaForm.reset();
         resetYogaTimeAndLocation();
         setButtonSuccess();
