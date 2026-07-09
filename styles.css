@@ -879,6 +879,128 @@ form button[type="submit"] .loading-dots span:nth-child(3) {
 	margin-top: -0.25rem;
 }
 
+.yoga-pricing-section {
+	padding: 1.35rem 0 1.75rem;
+}
+
+.yoga-pricing-table-wrap {
+	width: 100%;
+	max-width: 100%;
+	margin: 0 auto;
+}
+
+.yoga-pricing-note {
+	margin: 1.25rem 0 0;
+}
+
+.yoga-pricing-table {
+	width: 100%;
+	border-collapse: collapse;
+	table-layout: fixed;
+	font-family: 'Jost', system-ui, sans-serif;
+	font-size: clamp(19px, 2.15vw, 22px);
+	font-weight: 400;
+	line-height: 1.35;
+	color: rgba(28, 28, 26, 0.88);
+}
+
+.yoga-pricing-table thead th {
+	padding: 0.85rem 1.1rem;
+	font-size: clamp(11px, 1.35vw, 13px);
+	font-weight: 500;
+	letter-spacing: 0.18em;
+	text-transform: uppercase;
+	text-align: center;
+	vertical-align: middle;
+	color: rgba(28, 28, 26, 0.42);
+	border-bottom: 0.5px solid rgba(28, 28, 26, 0.14);
+}
+
+.yoga-pricing-table thead th:first-child {
+	text-align: left;
+	width: 38%;
+}
+
+.yoga-pricing-table thead th:nth-child(2) {
+	width: 34%;
+}
+
+.yoga-pricing-table thead th:nth-child(3) {
+	width: 28%;
+}
+
+.yoga-pricing-table tbody td {
+	padding: 1.15rem 1.1rem;
+	border-bottom: 0.5px solid rgba(28, 28, 26, 0.10);
+	vertical-align: middle;
+}
+
+.yoga-pricing-table tbody tr:last-child td {
+	border-bottom: none;
+}
+
+.yoga-pricing-class {
+	text-align: left;
+}
+
+.yoga-pricing-name {
+	display: block;
+	font-weight: 500;
+	color: #1c1c1a;
+}
+
+.yoga-pricing-sub {
+	display: block;
+	margin-top: 0.2rem;
+	font-size: 0.72em;
+	font-weight: 300;
+	line-height: 1.35;
+	color: rgba(28, 28, 26, 0.58);
+}
+
+.yoga-pricing-cost,
+.yoga-pricing-valid {
+	text-align: center;
+}
+
+.yoga-pricing-cost {
+	display: table-cell;
+}
+
+.yoga-pricing-now {
+	display: block;
+	font-weight: 500;
+	color: #1c1c1a;
+}
+
+.yoga-pricing-rate {
+	display: flex;
+	justify-content: center;
+	align-items: baseline;
+	gap: 0.4rem;
+	margin-top: 0.35rem;
+	font-size: 0.62em;
+	font-weight: 300;
+	line-height: 1.3;
+	color: rgba(28, 28, 26, 0.62);
+}
+
+.yoga-pricing-was {
+	color: rgba(28, 28, 26, 0.38);
+	text-decoration: line-through;
+}
+
+.yoga-pricing-per {
+	font-weight: 400;
+	color: rgba(28, 28, 26, 0.68);
+}
+
+.yoga-pricing-valid {
+	font-size: 0.68em;
+	font-weight: 300;
+	color: rgba(28, 28, 26, 0.62);
+}
+
 .yoga-location-label {
 	display: block;
 	margin-bottom: 0.5rem;
@@ -1215,6 +1337,19 @@ form button[type="submit"] .loading-dots span:nth-child(3) {
 	#yoga-booking-form {
 		width: 100%;
 		max-width: 100%;
+	}
+
+	.yoga-pricing-section {
+		padding: 1rem 0 1.25rem;
+	}
+
+	.yoga-pricing-table {
+		font-size: clamp(16px, 4vw, 19px);
+	}
+
+	.yoga-pricing-table thead th,
+	.yoga-pricing-table tbody td {
+		padding: 0.85rem 0.55rem;
 	}
 
 	form .field {
