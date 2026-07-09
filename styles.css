@@ -1287,17 +1287,17 @@ form button[type="submit"] .loading-dots span:nth-child(3) {
 	}
 
 	#main article {
-		margin: 1rem;
+		margin: 0.5rem;
 		max-height: 90vh;
+		width: min(1100px, calc(100vw - 1rem));
 	}
 
 	#main article .content {
-		padding: 2rem;
+		padding: 2rem 1rem;
 	}
 
 	#main article .modal-surface-inner {
-		padding: 1.5rem;
-		padding-bottom: 2.25rem;
+		padding: 1.5rem 0.75rem 2.25rem;
 	}
 
 	/* Subpages: let text use more horizontal space on mobile */
