@@ -210,7 +210,7 @@ if (yogaForm) {
     if (payload.company) {
       yogaForm.reset();
       resetYogaTimeAndLocation();
-      setYogaStatus("We've recieved your reservation. Check your email for confimation.", 'success');
+      setYogaStatus("We've recieved your reservation. Check your email for confirmation.", 'success');
       setButtonSuccess();
       scheduleSubmitButtonReset();
       return;

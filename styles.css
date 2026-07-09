@@ -499,26 +499,63 @@ a:hover {
 
 /* Temp-inspired layout (scoped to popups only) */
 #main article .modal-surface {
+	--modal-content-max: 780px;
+	--modal-gutter: clamp(1.5rem, 3.5vw, 3rem);
+	--modal-inline-inset: calc((100% - min(var(--modal-content-max), 100%)) / 2 + var(--modal-gutter));
 	background-color: #faf9f7;
 	border: none;
 	border-radius: 8px;
 	overflow: hidden;
+	padding-bottom: calc(var(--modal-gutter) + 0.75rem);
 }
 
 #main article .modal-surface-inner {
-	max-width: 780px;
-	margin: 0 auto;
-	padding: clamp(1.5rem, 3.5vw, 3rem);
-	padding-bottom: calc(clamp(1.5rem, 3.5vw, 3rem) + 0.75rem);
+	display: contents;
+}
+
+#main article .modal-page-header {
+	padding: var(--modal-gutter) var(--modal-inline-inset) 0;
+	margin-bottom: 1.75rem;
 }
 
 #main article .modal-section {
-	padding: 2.75rem 0;
+	padding: 2.75rem var(--modal-inline-inset);
 	border-bottom: 0.5px solid rgba(28, 28, 26, 0.10);
 }
 
 #main article .modal-section:last-of-type {
 	border-bottom: none;
+}
+
+/* Full-width section backgrounds with contained content alignment */
+#main article .modal-section--dark {
+	background-color: #403b35;
+	color: rgba(255, 255, 255, 0.92);
+	border-top: 10px solid #87837f;
+	border-bottom-color: rgba(255, 255, 255, 0.12);
+	border-radius: 20px 20px 0 0;
+	padding-top: calc(2.75rem + 0.75rem);
+	padding-bottom: calc(2.75rem + 1.25rem);
+}
+
+#main article .modal-section--dark .modal-label {
+	color: rgba(255, 255, 255, 0.55);
+}
+
+#main article .modal-section--dark .modal-copy,
+#main article .modal-section--dark .modal-content p,
+#main article .modal-section--dark .modal-content li {
+	color: rgba(255, 255, 255, 0.88);
+}
+
+#main article .modal-section--dark a {
+	color: rgba(255, 255, 255, 0.92);
+	border-bottom-color: rgba(255, 255, 255, 0.42);
+}
+
+#main article .modal-section--dark a:hover {
+	color: #ffffff;
+	border-bottom-color: transparent;
 }
 
 #main article .modal-cta {
@@ -588,17 +625,13 @@ a:hover {
 	font-weight: 500;
 	letter-spacing: 0.2em;
 	text-transform: uppercase;
-	color: rgba(28, 28, 26, 0.42);
+	color: #403b35;
 	margin: 0 0 1.25rem 0;
-}
-
-#main article .modal-page-header {
-	margin-bottom: 1.75rem;
 }
 
 #main article .modal-page-title {
 	font-family: 'Jost', system-ui, sans-serif;
-	font-size: 13px;
+	font-size: 17px;
 	font-weight: 500;
 	letter-spacing: 0.2em;
 	text-transform: uppercase;
@@ -879,8 +912,14 @@ form button[type="submit"] .loading-dots span:nth-child(3) {
 	margin-top: -0.25rem;
 }
 
-.yoga-pricing-section {
-	padding: 1.35rem 0 1.75rem;
+#main article .modal-section.yoga-pricing-section {
+	padding-top: 1.35rem;
+	padding-bottom: 1.75rem;
+}
+
+#main article .modal-section--dark.yoga-pricing-section {
+	padding-top: calc(1.35rem + 0.75rem);
+	padding-bottom: calc(1.14rem + 1.15rem);
 }
 
 .yoga-pricing-table-wrap {
@@ -979,7 +1018,7 @@ form button[type="submit"] .loading-dots span:nth-child(3) {
 	align-items: baseline;
 	gap: 0.4rem;
 	margin-top: 0.35rem;
-	font-size: 0.62em;
+	font-size: 0.78em;
 	font-weight: 300;
 	line-height: 1.3;
 	color: rgba(28, 28, 26, 0.62);
@@ -999,6 +1038,35 @@ form button[type="submit"] .loading-dots span:nth-child(3) {
 	font-size: 0.68em;
 	font-weight: 300;
 	color: rgba(28, 28, 26, 0.62);
+}
+
+#main article .modal-section--dark .yoga-pricing-table {
+	color: rgba(255, 255, 255, 0.9);
+}
+
+#main article .modal-section--dark .yoga-pricing-table thead th {
+	color: rgba(255, 255, 255, 0.55);
+	border-bottom-color: rgba(255, 255, 255, 0.16);
+}
+
+#main article .modal-section--dark .yoga-pricing-table tbody td {
+	border-bottom-color: rgba(255, 255, 255, 0.12);
+}
+
+#main article .modal-section--dark .yoga-pricing-name,
+#main article .modal-section--dark .yoga-pricing-now {
+	color: #ffffff;
+}
+
+#main article .modal-section--dark .yoga-pricing-sub,
+#main article .modal-section--dark .yoga-pricing-valid,
+#main article .modal-section--dark .yoga-pricing-rate,
+#main article .modal-section--dark .yoga-pricing-per {
+	color: rgba(255, 255, 255, 0.72);
+}
+
+#main article .modal-section--dark .yoga-pricing-was {
+	color: rgba(255, 255, 255, 0.42);
 }
 
 .yoga-location-label {
@@ -1049,6 +1117,13 @@ form button[type="submit"] .loading-dots span:nth-child(3) {
 
 .form-status[data-tone="error"] {
 	color: rgba(150, 30, 30, 0.85);
+}
+
+#main article .modal-content .yoga-form-consent {
+	margin: 0.75rem 0 0;
+	font-size: 0.95rem;
+	line-height: 1.55;
+	color: rgba(28, 28, 26, 0.52);
 }
 
 /* Social Links */
@@ -1292,12 +1367,12 @@ form button[type="submit"] .loading-dots span:nth-child(3) {
 		width: min(1100px, calc(100vw - 1rem));
 	}
 
-	#main article .content {
-		padding: 2rem;
+	#main article .modal-surface {
+		--modal-gutter: 0.75rem;
 	}
 
-	#main article .modal-surface-inner {
-		padding: 1.5rem 1.5rem 2.25rem;
+	#main article .content {
+		padding: 2rem 1rem;
 	}
 
 	/* Subpages: let text use more horizontal space on mobile */
@@ -1314,6 +1389,11 @@ form button[type="submit"] .loading-dots span:nth-child(3) {
 	#main article .modal-label {
 		font-size: clamp(10px, 2.8vw, 12px);
 		letter-spacing: 0.18em;
+		color: #403b35;
+	}
+
+	#main article .modal-page-title {
+		font-size: clamp(14px, 3.6vw, 16px);
 	}
 
 	#main article .modal-content p,
@@ -1339,8 +1419,14 @@ form button[type="submit"] .loading-dots span:nth-child(3) {
 		max-width: 100%;
 	}
 
-	.yoga-pricing-section {
-		padding: 1rem 0 1.25rem;
+	#main article .modal-section.yoga-pricing-section {
+		padding-top: 1rem;
+		padding-bottom: 1.25rem;
+	}
+
+	#main article .modal-section--dark.yoga-pricing-section {
+		padding-top: calc(1rem + 0.75rem);
+		padding-bottom: calc(1rem + 1rem);
 	}
 
 	.yoga-pricing-table {
