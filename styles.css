@@ -1439,6 +1439,8 @@ a.internal-link[href="#immersions"] {
 
 	#main article .modal-scroll {
 		max-height: 90vh;
+		/* Clear mobile browser bottom bars (Safari/Chrome) when scrolled to the end */
+		padding-bottom: calc(7rem + env(safe-area-inset-bottom, 0px));
 	}
 
 	#main article .modal-surface {
