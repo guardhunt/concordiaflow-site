@@ -11,14 +11,15 @@ function randomInt(min, max) {
 
 function scheduleLogoFlaps() {
   const scene = document.querySelector('.logo-scene');
-  if (!scene) return;
+  if (!scene) return null;
 
   const rightWing = scene.querySelector('.logo-wing-wrap.right');
-  if (!rightWing) return;
+  if (!rightWing) return null;
 
   let nextTimerId = null;
   let stopTimerId = null;
   let burstToken = 0;
+  let paused = false;
 
   const clearTimers = () => {
     if (nextTimerId !== null) window.clearTimeout(nextTimerId);
@@ -34,9 +35,11 @@ function scheduleLogoFlaps() {
   };
 
   const scheduleNext = () => {
+    if (paused) return;
     clearTimers();
     const delayMs = randomInt(4_000, 15_000);
     nextTimerId = window.setTimeout(() => {
+      if (paused) return;
       const flapCount = randomInt(2, 5);
       scene.style.setProperty('--flap-count', String(flapCount));
 
@@ -61,7 +64,20 @@ function scheduleLogoFlaps() {
     }, delayMs);
   };
 
+  const pause = () => {
+    paused = true;
+    clearTimers();
+    scene.classList.remove('is-flapping');
+  };
+
+  const resume = () => {
+    if (!paused) return;
+    paused = false;
+    scheduleNext();
+  };
+
   scheduleNext();
+  return { pause, resume };
 }
 
 function initRippleOverlay() {
@@ -255,9 +271,9 @@ function initRippleOverlay() {
 }
 
 function initAnimations() {
-  scheduleLogoFlaps();
+  const logoController = scheduleLogoFlaps();
   const rippleController = ENABLE_RIPPLE_OVERLAY ? initRippleOverlay() : null;
-  return { rippleController };
+  return { rippleController, logoController };
 }
 
 window.ConcordiaAnimations = {

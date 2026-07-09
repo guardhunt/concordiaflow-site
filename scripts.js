@@ -18,15 +18,36 @@ const closeButtons = document.querySelectorAll('.close');
 // ------------------------------------------------------------
 
 let rippleController = null;
+let logoController = null;
 
 function isSectionEnabled(id) {
   if (id === 'immersions' && !ENABLE_IMMERSIONS) return false;
   return true;
 }
 
-function resumeRipplesAfterClose() {
-  if (!rippleController) return;
-  window.setTimeout(() => rippleController && rippleController.resume(), 350);
+function pauseLandingAnimations() {
+  if (rippleController) rippleController.pause();
+  if (logoController) logoController.pause();
+}
+
+function resumeLandingAnimations() {
+  if (!rippleController && !logoController) return;
+  window.setTimeout(() => {
+    if (rippleController) rippleController.resume();
+    if (logoController) logoController.resume();
+  }, 350);
+}
+
+function closeModal() {
+  main.classList.remove('active');
+  document.body.classList.remove('modal-open');
+  window.location.hash = '';
+  window.setTimeout(() => {
+    articles.forEach((article) => {
+      article.style.display = 'none';
+    });
+  }, 325);
+  resumeLandingAnimations();
 }
 
 function showArticle(id) {
@@ -41,10 +62,13 @@ function showArticle(id) {
 
   // Show target article
   if (targetArticle) {
+    const scrollEl = targetArticle.querySelector('.modal-scroll');
+    if (scrollEl) scrollEl.scrollTop = 0;
+
     targetArticle.style.display = 'block';
     main.classList.add('active');
     document.body.classList.add('modal-open');
-    if (rippleController) rippleController.pause();
+    pauseLandingAnimations();
   }
 }
 
@@ -60,46 +84,20 @@ navLinks.forEach((link) => {
 
 // Close functionality
 closeButtons.forEach((button) => {
-  button.addEventListener('click', () => {
-    main.classList.remove('active');
-    document.body.classList.remove('modal-open');
-    window.location.hash = ''; // Clear hash
-    setTimeout(() => {
-      articles.forEach((article) => {
-        article.style.display = 'none';
-      });
-    }, 325);
-    resumeRipplesAfterClose();
-  });
+  button.addEventListener('click', closeModal);
 });
 
 // Close on background click
 main.addEventListener('click', (e) => {
   if (e.target === main) {
-    main.classList.remove('active');
-    document.body.classList.remove('modal-open');
-    window.location.hash = '';
-    setTimeout(() => {
-      articles.forEach((article) => {
-        article.style.display = 'none';
-      });
-    }, 325);
-    resumeRipplesAfterClose();
+    closeModal();
   }
 });
 
 // ESC key to close
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && main.classList.contains('active')) {
-    main.classList.remove('active');
-    document.body.classList.remove('modal-open');
-    window.location.hash = '';
-    setTimeout(() => {
-      articles.forEach((article) => {
-        article.style.display = 'none';
-      });
-    }, 325);
-    resumeRipplesAfterClose();
+    closeModal();
   }
 });
 
@@ -116,7 +114,7 @@ document.querySelectorAll('.internal-link').forEach((link) => {
 
 // Scroll to in-modal anchors (e.g. yoga booking form)
 function scrollModalTo(target) {
-  const container = target.closest('#main article');
+  const container = target.closest('#main article .modal-scroll');
   if (!container) return;
 
   const top =
@@ -141,6 +139,10 @@ document.querySelectorAll('.modal-scroll-link').forEach((link) => {
 
 // Show article if URL has a hash on page load
 window.addEventListener('DOMContentLoaded', () => {
+  const anim = window.ConcordiaAnimations ? window.ConcordiaAnimations.init() : null;
+  rippleController = anim ? anim.rippleController : null;
+  logoController = anim ? anim.logoController : null;
+
   const hash = window.location.hash.substring(1);
   if (hash) {
     if (!isSectionEnabled(hash)) {
@@ -153,9 +155,6 @@ window.addEventListener('DOMContentLoaded', () => {
       });
     }
   }
-
-  const anim = window.ConcordiaAnimations ? window.ConcordiaAnimations.init() : null;
-  rippleController = anim ? anim.rippleController : null;
 });
 
 

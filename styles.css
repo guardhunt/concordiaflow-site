@@ -21,8 +21,17 @@ body.modal-open {
 	overflow: hidden;
 }
 
+body.modal-open #wrapper > :not(#main) {
+	visibility: hidden;
+}
+
 body.modal-open .ripple-layer {
 	display: none;
+}
+
+body.modal-open .logo-scene.is-flapping,
+body.modal-open .logo-scene.is-flapping .logo-wing-wrap {
+	animation-play-state: paused;
 }
 
 h1, h2, h3, h4 {
@@ -352,35 +361,43 @@ a:hover {
 	left: 0;
 	width: 100vw;
 	height: 100vh;
-	background: rgba(27, 31, 34, 0.4);
+	background: transparent;
 	display: none;
 	align-items: center;
 	justify-content: center;
 	z-index: 10000;
+}
+
+#main .modal-scrim {
+	position: fixed;
+	inset: 0;
+	background: rgba(27, 31, 34, 0.4);
 	backdrop-filter: blur(8px);
-	/* Reduce scroll-time backdrop-filter flicker in Chrome by keeping a stable compositor layer. */
-	will-change: opacity;
-	transform: translateZ(0);
+	pointer-events: none;
+	z-index: 0;
 }
 
 #main.active { display: flex; }
 
 /* Prevent initial-load "style snap" when opening via hash */
 #main.no-transition,
-#main.no-transition article {
+#main.no-transition article,
+#main.no-transition .modal-scroll {
 	transition: none !important;
 }
 
 #main article {
 	background: #ffffff;
 	border-radius: 8px;
-	padding-bottom: 2.5rem;
 	width: min(1100px, calc(100vw - 4rem));
 	max-width: unset;
 	max-height: 92vh;
-	overflow-y: auto;
+	overflow: hidden;
 	margin: 2rem;
 	position: relative;
+	z-index: 1;
+	display: flex;
+	flex-direction: column;
 	transform: translateY(2rem) translateZ(0);
 	opacity: 0;
 	transition: transform 0.325s ease, opacity 0.325s ease;
@@ -391,19 +408,26 @@ a:hover {
 	box-shadow: 0 18px 70px rgba(0, 0, 0, 0.45);
 }
 
+#main article .modal-scroll {
+	flex: 1;
+	min-height: 0;
+	max-height: 92vh;
+	overflow-y: auto;
+	overscroll-behavior: contain;
+	-webkit-overflow-scrolling: touch;
+	position: relative;
+}
+
 #main.active article {
 	transform: translateY(0) translateZ(0);
 	opacity: 1;
 }
 
 #main article .close {
-	position: sticky;
+	position: absolute;
 	top: 1rem;
-	right: 0;
-	margin-left: auto;
-	margin-right: .8rem;
-	margin-top: .8rem;
-	text-align: right;
+	right: 0.8rem;
+	z-index: 2;
 	width: 2rem;
 	height: 2rem;
 	border-radius: 50%;
@@ -510,7 +534,8 @@ a:hover {
 }
 
 #main article .modal-surface-inner {
-	display: contents;
+	display: block;
+	contain: layout style paint;
 }
 
 #main article .modal-page-header {
@@ -1410,6 +1435,10 @@ a.internal-link[href="#immersions"] {
 		margin: 0.5rem;
 		max-height: 90vh;
 		width: min(1100px, calc(100vw - 1rem));
+	}
+
+	#main article .modal-scroll {
+		max-height: 90vh;
 	}
 
 	#main article .modal-surface {
